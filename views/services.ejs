@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Services | DevOps Advisor</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  <section class="container py-5">
+    <h2 class="section-title text-center">My Services</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card h-100 p-4">
+          <h5 class="fw-bold">DevOps Advisory (Subscription)</h5>
+          <p>On-demand technical advice, code reviews, infrastructure consulting, cloud cost management. Flexible plans — one-off consults or monthly subscription.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card h-100 p-4">
+          <h5 class="fw-bold">Cloud/Kubernetes Implementation</h5>
+          <p>End-to-end project delivery, cloud migration, IaC setups, automation, monitoring, and security implementation.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card h-100 p-4">
+          <h5 class="fw-bold">CI/CD & Automation Training</h5>
+          <p>Custom workshops for your teams: Git, pipelines, monitoring, best practices, and DevOps mindset upskilling.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card h-100 p-4">
+          <h5 class="fw-bold">Disaster Recovery / Security</h5>
+          <p>Design and implementation of backup, failover, and secure multi-cloud solutions for production environments.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <%- include('partials/footer') %>
+</body>
+</html>

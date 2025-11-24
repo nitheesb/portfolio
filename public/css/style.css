@@ -1,0 +1,32 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #f4f7fc;
+  color: #222;
+}
+.hero {
+  background: linear-gradient(120deg, #1e5efd 0%, #49c3ff 100%);
+  color: #fff;
+}
+.btn-primary {
+  background: #1e5efd;
+  border: none;
+}
+.section-title {
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1e5efd;
+}
+.card {
+  box-shadow: 0 6px 32px 0 rgba(30,94,253,0.10);
+}
+footer {
+  background: #1e5efd;
+  color: #fff;
+}
+a {
+  color: #1e5efd;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
