@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Notable Projects | DevOps Portfolio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  <section class="container py-5">
+    <h2 class="section-title text-center mb-4" data-aos="fade-down">Notable Projects</h2>
+    <!-- Filter Buttons -->
+    <div class="text-center mb-4">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="cloud">Cloud</button>
+      <button class="filter-btn" data-filter="k8s">Kubernetes</button>
+      <button class="filter-btn" data-filter="ci">CI/CD</button>
+    </div>
+    <!-- Projects Grid -->
+    <div class="row g-4" id="projects-list">
+      <div class="col-md-4 project-card" data-category="cloud k8s" data-aos="zoom-in">
+        <div class="card p-3 h-100">
+          <h5>GCP Multi-Region Migration</h5>
+          <p>Migrated global app infra to multi-region GKE, improving uptime while slashing cloud spend by 18%.</p>
+        </div>
+      </div>
+      <div class="col-md-4 project-card" data-category="k8s" data-aos="zoom-in" data-aos-delay="100">
+        <div class="card p-3 h-100">
+          <h5>FreePBX on Kubernetes</h5>
+          <p>Automated telephony workloads using K8s, Helm, and CI/CD pipelines for auto-recovery and scaling.</p>
+        </div>
+      </div>
+      <div class="col-md-4 project-card" data-category="ci cloud" data-aos="zoom-in" data-aos-delay="200">
+        <div class="card p-3 h-100">
+          <h5>GitHub Actions Accelerator</h5>
+          <p>Transformed release process: code to deploy in 7 minutes, full rollback and self-healing in under 60s.</p>
+        </div>
+      </div>
+      <div class="col-md-4 project-card" data-category="cloud" data-aos="zoom-in" data-aos-delay="300">
+        <div class="card p-3 h-100">
+          <h5>Microservices Disaster Recovery</h5>
+          <p>Architected multi-cloud backup + DR for mission-critical banking APIs—0 seconds data loss on failover drills.</p>
+        </div>
+      </div>
+      <div class="col-md-4 project-card" data-category="ci" data-aos="zoom-in" data-aos-delay="400">
+        <div class="card p-3 h-100">
+          <h5>DevOps Team Training Platform</h5>
+          <p>Delivered custom DevOps bootcamps—track, score, and level up new hires for top SaaS startup.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <%- include('partials/footer') %>
+  <!-- Project Filter JS -->
+  <script>
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.onclick = function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const category = btn.getAttribute('data-filter');
+        document.querySelectorAll('.project-card').forEach(card => {
+          if (category === 'all' || card.getAttribute('data-category').includes(category)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
