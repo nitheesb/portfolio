@@ -15,21 +15,39 @@
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-1">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="/">DevOps Expert</a>
+<nav id="main-navbar" class="navbar navbar-expand-lg position-sticky top-0 py-2" style="background:rgba(255,255,255,0.83); backdrop-filter:blur(10px); box-shadow:0 4px 28px #1e5efd16; z-index:1020;">
+  <div class="container position-relative">
+    <a class="navbar-brand d-flex align-items-center" href="/" style="letter-spacing: 1.2px;">
+      <span class="fw-bold" style="font-size:1.3rem;background:linear-gradient(90deg,#1e5efd,#fb0081 80%);background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent;display:inline-block;">DevOps Expert</span>
+      <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_oqpbtola.json" background="transparent" speed="1.5" style="width:40px;height:40px; margin-left:8px;" loop autoplay></lottie-player>
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
-        <li class="nav-item"><a class="nav-link" href="/projects">Projects</a></li>
-        <li class="nav-item"><a class="nav-link" href="/testimonials">Testimonials</a></li>
-        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul id="navList" class="navbar-nav position-relative">
+        <% 
+          const pages = [
+            { href: '/', label: 'Home' },
+            { href: '/about', label: 'About' },
+            { href: '/services', label: 'Services' },
+            { href: '/projects', label: 'Projects' },
+            { href: '/testimonials', label: 'Testimonials' },
+            { href: '/contact', label: 'Contact' }
+          ];
+        %>
+        <% pages.forEach((p, i) => { %>
+          <li class="nav-item mx-1">
+            <a class="nav-link nav-animate-link px-3 py-1 rounded-pill <%= (typeof page !== 'undefined' && page===p.label) ? 'active-nav' : '' %>" 
+               href="<%= p.href %>">
+              <%= p.label %>
+            </a>
+          </li>
+        <% }) %>
+        <!-- Animated underline highlight bar -->
+        <div id="nav-underline-highlight"></div>
       </ul>
     </div>
   </div>
 </nav>
+

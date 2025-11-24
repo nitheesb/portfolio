@@ -106,5 +106,31 @@
       update();
     });
   </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const nav = document.getElementById('navList');
+  const highlight = document.getElementById('nav-underline-highlight');
+  const links = nav.querySelectorAll(".nav-animate-link");
+  function moveHighlight(el) {
+    const rect = el.getBoundingClientRect();
+    const navRect = nav.getBoundingClientRect();
+    highlight.style.left = (rect.left - navRect.left) + "px";
+    highlight.style.top = (rect.top - navRect.top) + "px";
+    highlight.style.width = rect.width + "px";
+    highlight.style.height = rect.height + "px";
+    highlight.style.opacity = 1;
+  }
+  links.forEach(link => {
+    link.addEventListener("mouseenter", () => moveHighlight(link));
+    link.addEventListener("focus", () => moveHighlight(link));
+  });
+  nav.addEventListener("mouseleave", () => {
+    highlight.style.opacity = 0;
+  });
+  // On load, show under current active item if any
+  const active = nav.querySelector('.active-nav');
+  if (active) moveHighlight(active);
+});
+</script>
 </body>
 </html>
