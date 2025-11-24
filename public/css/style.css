@@ -11,7 +11,6 @@ body {
   animation: gradient-flow 6s ease-in-out infinite;
   color: #fff;
   position: relative;
-  overflow: hidden;
 }
 
 @keyframes gradient-flow {
@@ -25,7 +24,6 @@ body {
   border: none;
   border-radius: 1.25rem;
   box-shadow: 0 8px 38px 0 rgba(30,94,253,0.13);
-  background: #fff;
 }
 .card:hover {
   transform: translateY(-12px) scale(1.03);
@@ -56,6 +54,77 @@ body {
   border-color: #1e5efd;
 }
 
+.dynamic-header {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  position: relative;
+  line-height: 1.1;
+  background: linear-gradient(90deg, #1e5efd, #fb0081, #1e5efd);
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: flowing-gradient 5s linear infinite;
+}
+@keyframes flowing-gradient {
+  0% {background-position: 0% 50%;}
+  100% {background-position: 100% 50%;}
+}
+.animated-underline {
+  height: 4px;
+  width: 80px;
+  background: linear-gradient(90deg, #fb0081, #1e5efd, #fb0081);
+  border-radius: 2px;
+  margin-top: 0.8rem;
+  position: relative;
+  animation: slide-underline .7s cubic-bezier(.42,0,.58,1) alternate infinite;
+}
+@keyframes slide-underline {
+  0% { width: 80px; background-position: 0; }
+  100% { width: 120px; background-position: 120px; }
+}
+
+.timeline {position:relative;}
+.timeline-item {background: #fff; border-radius: 1rem; margin-bottom: 2rem; padding: 1.5rem; position:relative;}
+.timeline-item.left:before {content:""; position:absolute; left:-1rem; top:1.5rem; width:9px; height:9px; background: #1e5efd; border-radius:100%; }
+.timeline-item.right:before {content:""; position:absolute; right:-1rem; top:1.5rem; width:9px; height:9px; background: #fb0081; border-radius:100%;}
+
+.skill-tile {
+  transition: box-shadow .25s, transform .22s;
+  cursor: pointer;
+  background: #fcfcfd;
+}
+.skill-tile:hover {
+  box-shadow: 0 2px 22px #1e5efd77;
+  transform: scale(1.12) rotate(-3deg);
+}
+
+.project-hover {
+  position: relative;
+  cursor: pointer;
+  transition: box-shadow .2s;
+}
+
+.project-hover .project-extra {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  background: #fb0081cc;
+  color: #fff;
+  padding: .6rem 1rem;
+  border-radius: 0 0 1rem 1rem;
+  font-size: 95%;
+  z-index: 3;
+  transition: opacity .3s;
+  display: none;
+}
+.project-hover:hover {
+  box-shadow: 0 2px 30px #fb008199;
+}
+.project-hover:hover .project-extra {
+  display: block;
+}
+
 .testimonial {
   font-style: italic;
   color: #525e7b;
@@ -65,7 +134,17 @@ body {
   font-weight: bold;
   color: #1e5efd;
 }
+
 .lottie-hero {
   width: 200px; 
   margin: 0 auto 2rem auto;
+}
+
+.contact-form .form-control:focus {
+  border-color: #fb0081;
+  box-shadow: 0 0 0 0.2rem #fb008122;
+}
+.contact-form .btn-primary:hover {
+  background: #fb0081;
+  border-color: #fb0081;
 }

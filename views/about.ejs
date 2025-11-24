@@ -1,13 +1,32 @@
 <%- include('partials/header') %>
 <section class="container py-5">
-  <div class="text-center mb-4" data-aos="fade-down">
-    <lottie-player class="mb-3" src="https://assets10.lottiefiles.com/packages/lf20_w51pcehl.json"
-                   background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
-    <h2 class="section-title">About Me</h2>
-    <p class="lead">I’m Nithees Balaji Mohan, a DevOps Team Lead who engineers high-velocity, cloud-native environments that scale. I specialize in **automation, Kubernetes, GCP, AWS, and team mentorship** for ambitious organizations.</p>
+  <div class="row align-items-center mb-5">
+    <div class="col-md-4 text-center" data-aos="fade-up">
+      <img src="https://ca.slack-edge.com/T0DAXU939-U04TCM739QQ-9d709b5f8bd1-512"
+           alt="Nithees Balaji Mohan"
+           class="img-fluid rounded-circle shadow-lg"
+           style="width:180px; border:5px solid #1e5efd; box-shadow: 0 8px 32px #49c3ff77; margin-bottom:1.2rem;">
+      <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_w51pcehl.json"
+        background="transparent"
+        speed="1"
+        style="width:88px;height:88px;margin:0 auto -20px auto"
+        loop autoplay>
+      </lottie-player>
+    </div>
+    <div class="col-md-8">
+      <div class="dynamic-header-container text-center py-4" data-aos="zoom-in-up">
+        <h2 class="dynamic-header" id="main-title">About Me
+          <div class="animated-underline mx-auto"></div>
+        </h2>
+      </div>
+      <p class="lead">I’m Nithees Balaji Mohan: a <b>cloud-native engineer & DevOps leader</b> orchestrating automation, scale, and security for fast-moving businesses.</p>
+      <ul class="mb-4">
+        <li>Led cloud and Kubernetes migrations for Unicorn startups & enterprises</li>
+        <li>Recognized for cost optimization and proven disaster recovery</li>
+        <li>Mentored teams across Thailand, India, Malaysia, and beyond</li>
+      </ul>
+    </div>
   </div>
-
-  <!-- Animated Career Timeline -->
   <div class="timeline mb-5">
     <div class="timeline-item left" data-aos="fade-right">
       <h5>Rabbit Care (2023–Present)</h5>
@@ -18,33 +37,31 @@
       </ul>
     </div>
     <div class="timeline-item right" data-aos="fade-left">
-      <h5>Brikl, Thailand (2022–2023)</h5>
+      <h5>Brikl, Thailand</h5>
       <ul>
         <li>Built secure AWS landing zones with Terraform</li>
         <li>Standardized pipelines, cut deployment errors 60%</li>
       </ul>
     </div>
     <div class="timeline-item left" data-aos="fade-right">
-      <h5>Intertrust Technologies, India (2021–2022)</h5>
+      <h5>Intertrust Technologies, India</h5>
       <ul>
         <li>Automated multi-prod AWS infra, DR, REST APIs</li>
       </ul>
     </div>
     <div class="timeline-item right" data-aos="fade-left">
-      <h5>BYJUS, India (2020–2021)</h5>
+      <h5>BYJUS, India</h5>
       <ul>
         <li>Orchestrated large-scale cloud deployments and ECS</li>
       </ul>
     </div>
     <div class="timeline-item left" data-aos="fade-right">
-      <h5>Binfex Tech, India (2016–2020)</h5>
+      <h5>Binfex Tech, India</h5>
       <ul>
         <li>CI/CD pipelines, monitoring, and zero-downtime ops</li>
       </ul>
     </div>
   </div>
-  
-  <!-- Skills Grid with Hover Animation -->
   <h4 class="mt-4 mb-3" data-aos="fade-up">Key Technologies</h4>
   <div class="row g-4 text-center">
     <% [ 
@@ -65,16 +82,9 @@
   </div>
 </section>
 <script>
-  // Skill-tile hover animation using vanilla JS
   document.querySelectorAll('.skill-tile').forEach(tile => {
     tile.onmouseenter = () => tile.style.transform = 'scale(1.12) rotate(-2deg)';
     tile.onmouseleave = () => tile.style.transform = '';
   });
 </script>
-<style>
-.timeline {position:relative;}
-.timeline-item {background: #fff; border-radius: 1rem; margin-bottom: 2rem; padding: 1.5rem; position:relative;}
-.timeline-item.left:before {content:""; position:absolute; left:-1rem; top:1.5rem; width:9px; height:9px; background: #1e5efd; border-radius:100%; }
-.timeline-item.right:before {content:""; position:absolute; right:-1rem; top:1.5rem; width:9px; height:9px; background: #fb0081; border-radius:100%;}
-</style>
 <%- include('partials/footer') %>
