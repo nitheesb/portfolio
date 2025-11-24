@@ -1,48 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Testimonials | DevOps Portfolio</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="/css/style.css" />
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-</head>
-<body>
-  <%- include('partials/header') %>
-  <section class="container py-5 text-center">
-    <h2 class="section-title mb-5" data-aos="flip-left">Feedback from Clients & Teams</h2>
-    <div class="row justify-content-center">
-      <div class="col-md-7 carousel slide" id="testimonial-carousel" data-bs-ride="carousel" data-aos="zoom-in">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="testimonial">
-              “Transformed our releases—<b>automation speed and reliability were game changers</b> for us.”
-              <div class="testimonial-author">– CTO, ZenFinTech</div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="testimonial">
-              “Clear, actionable advice. Our GCP costs dropped by 20%, and support turnaround was instant.”
-              <div class="testimonial-author">– Founder, SmartRetail</div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="testimonial">
-              “Nithees trained our whole DevOps team—senior and junior—bridging knowledge gaps fast.”
-              <div class="testimonial-author">– Lead Engineer, SaaSify.io</div>
+<%- include('partials/header') %>
+<section class="container py-5 text-center">
+  <h2 class="section-title mb-5" data-aos="flip-left">Feedback & Endorsements</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-7 carousel slide" id="testimonial-carousel" data-bs-ride="carousel" data-aos="zoom-in">
+      <div class="carousel-inner">
+        <% [ 
+          {
+            quote: "Transformed our releases—automation speed and reliability were game changers for us.",
+            author: "CTO, ZenFinTech"
+          },
+          {
+            quote: "Clear, actionable advice. Our GCP costs dropped by 20%, and support turnaround was instant.",
+            author: "Founder, SmartRetail"
+          },
+          {
+            quote: "Nithees trained our whole DevOps team—senior and junior—bridging knowledge gaps fast.",
+            author: "Lead Engineer, SaaSify.io"
+          }
+        ].forEach(function(t, idx){ %>
+        <div class="carousel-item<%= idx === 0 ? ' active' : '' %>">
+          <div class="testimonial p-4 mx-3" style="background:#fbefff;border-radius:1.2rem;">
+            <i class="fa-solid fa-quote-left fa-2x text-primary mb-2"></i>
+            <p class="h5"><%= t.quote %></p>
+            <div class="testimonial-author mt-3 text-primary fw-bold">
+              &mdash; <%= t.author %>
             </div>
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#testimonial-carousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#testimonial-carousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon"></span>
-        </button>
+        <% }); %>
       </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#testimonial-carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#testimonial-carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
     </div>
-  </section>
-  <%- include('partials/footer') %>
-</body>
-</html>
+  </div>
+</section>
+<%- include('partials/footer') %>

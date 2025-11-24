@@ -1,37 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Contact | DevOps Advisor</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="/css/style.css" />
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-</head>
-<body>
-  <%- include('partials/header') %>
-  <section class="container py-5">
-    <h2 class="section-title text-center">Get in Touch</h2>
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <form action="mailto:your@email.com" method="post" enctype="text/plain">
-          <div class="mb-3">
-            <label for="name" class="form-label">Your Name</label>
-            <input type="text" name="name" id="name" class="form-control" required>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Your Email</label>
-            <input type="email" name="email" id="email" class="form-control" required>
-          </div>
-          <div class="mb-3">
-            <label for="message" class="form-label">Message</label>
-            <textarea name="message" id="message" class="form-control" rows="5" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Send Email</button>
-        </form>
-      </div>
+<%- include('partials/header') %>
+<section class="container py-5">
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-4 text-center" data-aos="flip-left">
+      <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_vb3fjsyv.json"
+        background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
     </div>
-  </section>
-  <%- include('partials/footer') %>
-</body>
-</html>
+    <div class="col-md-6" data-aos="fade-left">
+      <h2 class="section-title mb-4">Contact Me Directly</h2>
+      <form action="mailto:nitheesbalajigmail.com" method="post" enctype="text/plain" class="contact-form">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
+          <label for="name">Your Name</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+          <label for="email">Your Email</label>
+        </div>
+        <div class="form-floating mb-4">
+          <textarea class="form-control" name="message" id="message" placeholder="Message" style="height: 120px;" required></textarea>
+          <label for="message">Your Message</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg px-5">Send</button>
+      </form>
+    </div>
+  </div>
+</section>
+<style>
+.contact-form .form-control:focus {
+  border-color: #fb0081;
+  box-shadow: 0 0 0 0.2rem #fb008122;
+}
+.contact-form .btn-primary:hover {
+  background: #fb0081;
+  border-color: #fb0081;
+}
+</style>
+<%- include('partials/footer') %>
