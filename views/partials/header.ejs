@@ -4,7 +4,7 @@
   <title>DevOps Portfolio | Nithees Balaji Mohan</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="/favicon.png" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="stylesheet" href="/css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet" />
@@ -17,35 +17,62 @@
 <body>
 <nav id="main-navbar" class="navbar navbar-expand-lg position-sticky top-0 py-2" style="background:rgba(255,255,255,0.81);backdrop-filter:blur(10px);box-shadow:0 4px 28px #ff900016;z-index:1020;">
   <div class="container position-relative">
-    <a class="navbar-brand d-flex align-items-center" href="/" style="letter-spacing: 1.2px;">
+    <a class="navbar-brand d-flex align-items-center" href="#" style="letter-spacing: 1.2px;">
       <span class="fw-bold" style="font-size:1.3rem;background:linear-gradient(90deg,#ff9000,#ffd4a3 80%);background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent;display:inline-block;">DevOps Expert</span>
       <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_oqpbtola.json" background="transparent" speed="1.5" style="width:44px;height:44px;margin-left:8px;" loop autoplay></lottie-player>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse justify-content-end" id="navMenu">
       <ul id="navList" class="navbar-nav position-relative">
         <% 
-          const pages = [
-            { href: '/', label: 'Home' },
-            { href: '/about', label: 'About' },
-            { href: '/services', label: 'Services' },
-            { href: '/projects', label: 'Projects' },
-            { href: '/testimonials', label: 'Testimonials' },
-            { href: '/contact', label: 'Contact' }
+          const anchors = [
+            { href: '#hero', label: 'Home' },
+            { href: '#about', label: 'About' },
+            { href: '#services', label: 'Services' },
+            { href: '#projects', label: 'Projects' },
+            { href: '#testimonials', label: 'Testimonials' },
+            { href: '#contact', label: 'Contact' }
           ];
         %>
-        <% pages.forEach((p, i) => { %>
-          <li class="nav-item mx-1">
-            <a class="nav-link nav-animate-link px-3 py-1 rounded-pill <%= (typeof page !== 'undefined' && page===p.label) ? 'active-nav' : '' %>" 
-               href="<%= p.href %>">
-              <%= p.label %>
-            </a>
-          </li>
+        <% anchors.forEach((p, i) => { %>
+          <li class="nav-item mx-1"><a class="nav-link nav-animate-link px-3 py-1 rounded-pill" href="<%= p.href %>"><%= p.label %></a></li>
         <% }) %>
         <div id="nav-underline-highlight"></div>
       </ul>
     </div>
   </div>
 </nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Animated nav underline
+    const nav = document.getElementById('navList');
+    const highlight = document.getElementById('nav-underline-highlight');
+    const links = nav.querySelectorAll(".nav-animate-link");
+    function moveHighlight(el) {
+      const rect = el.getBoundingClientRect();
+      const navRect = nav.getBoundingClientRect();
+      highlight.style.left = (rect.left - navRect.left) + "px";
+      highlight.style.top = (rect.top - navRect.top) + "px";
+      highlight.style.width = rect.width + "px";
+      highlight.style.height = rect.height + "px";
+      highlight.style.opacity = 1;
+    }
+    links.forEach(link => {
+      link.addEventListener("mouseenter", () => moveHighlight(link));
+      link.addEventListener("focus", () => moveHighlight(link));
+    });
+    nav.addEventListener("mouseleave", () => highlight.style.opacity = 0);
+
+    // Optional: Smooth scroll for anchor links
+    links.forEach(link => {
+      link.addEventListener("click", function(e){
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) {
+          e.preventDefault();
+          t.scrollIntoView({ behavior: "smooth", block: "start"});
+        }
+      });
+    });
+  });
+</script>

@@ -1,141 +1,186 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>DevOps Architect | Nithees Balaji Mohan</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="/css/style.css" />
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-<!-- AOS, Lottie, Typed.js included via header.ejs -->
-</head>
-<body>
-  <%- include('partials/header') %>
+<%- include('partials/header') %>
+<main>
 
-  <!-- Hero Section -->
-  <section class="hero py-5 d-flex align-items-center justify-content-center flex-column text-center">
-    <div class="lottie-hero" data-aos="zoom-in" data-aos-delay="300">
-      <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_jtbfg2nb.json"  background="transparent" speed="1" loop autoplay></lottie-player>
+<!-- Hero Section -->
+<section id="hero" class="hero py-5 align-items-center d-flex">
+  <div class="container text-center">
+    <div class="lottie-hero mb-4" data-aos="zoom-in">
+      <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_oqpbtola.json"
+        background="transparent" speed="1" style="width:160px;height:160px;" loop autoplay></lottie-player>
     </div>
-    <h1 class="display-4 fw-bold" style="margin-bottom:.6rem;">
-      <span id="typed-text"></span>
-    </h1>
-    <p class="lead" data-aos="fade-up" data-aos-delay="600">Engineering resilient infrastructure, <b>trusted by global teams</b>.  
-      <br/>Automate, Optimize, Succeed—<span class="fw-bold text-warning">Every Time</span>.
-    </p>
-    <a href="/services" class="btn btn-light btn-lg mt-3 text-primary fw-bold" data-aos="fade-up" data-aos-delay="700">
-      View Services
-    </a>
-  </section>
-  
-  <div style="line-height:0;">
-    <svg viewBox="0 0 1400 74" width="100%" height="74" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0,18 C500,95 900,-45 1400,30 L1400,74 L0,74 Z" fill="#fff"/>
-    </svg>
+    <h1 class="display-3 fw-bold mb-2 dynamic-header">Nithees Balaji Mohan</h1>
+    <p class="lead mb-4">Cloud Native DevOps Architect | Automation | Reliability | Team Leadership</p>
+    <a href="#contact" class="btn btn-primary btn-lg px-4">Contact Me</a>
   </div>
-  <!-- Animated Stats Section -->
-  <section class="container py-5 text-center">
-    <div class="row">
-      <div class="col-md-4" data-aos="fade-up"><span class="counter" data-target="10">0</span>+ Years Experience</div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100"><span class="counter" data-target="25">0</span>+ Enterprise Projects</div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200"><span class="counter" data-target="99">0</span>.99% Infra Uptime</div>
+</section>
+<!-- Section divider -->
+<div style="line-height:0;">
+<svg viewBox="0 0 1400 74" width="100%" height="74" fill="none"><path d="M0,18 C500,95 900,-45 1400,30 L1400,74 L0,74 Z" fill="#fff"/></svg>
+</div>
+
+<!-- About -->
+<section id="about" class="container py-5">
+  <div class="row align-items-center mb-4">
+    <div class="col-md-4 text-center" data-aos="fade-up">
+      <img src="https://ca.slack-edge.com/T0DAXU939-U04TCM739QQ-9d709b5f8bd1-512"
+           alt="Nithees Balaji Mohan"
+           class="img-fluid rounded-circle shadow-lg"
+           style="width:170px; border:5px solid #ff9000; box-shadow: 0 8px 32px #ffb84d33; margin-bottom:1.2rem;">
     </div>
-  </section>
+    <div class="col-md-8">
+      <h2 class="dynamic-header">About Me<div class="animated-underline mx-auto"></div></h2>
+      <p class="lead mb-2">Senior DevOps / Infrastructure Engineer who delivers scalable, secure, and cost-effective cloud solutions for startups and enterprises. Specialized in Kubernetes, AWS, GCP, IaC, CI/CD, automation, and disaster recovery.</p>
+      <ul>
+        <li>Cloud & Kubernetes transformation for unicorn startups & global businesses</li>
+        <li>Team leadership, mentoring & best practices evangelism (EVERYWHERE: Thailand, India, Malaysia, etc.)</li>
+        <li>Cut GCP spend by 18%, enabled 99.99% uptime for fast-growing organizations</li>
+      </ul>
+    </div>
+  </div>
+  <!-- Career Timeline (optional, can be expanded) -->
+  <div class="timeline mb-4">
+    <div class="timeline-item left" data-aos="fade-right"><h5>Rabbit Care (2023–Present)</h5><ul><li>GCP automation, GKE, DR — 18% cloud cost savings</li></ul></div>
+    <div class="timeline-item right" data-aos="fade-left"><h5>Brikl</h5><ul><li>AWS security, Terraform infra, dev productivity up</li></ul></div>
+    <div class="timeline-item left" data-aos="fade-right"><h5>Intertrust, BYJUS, Binfex, more</h5><ul><li>Robust DevOps, pipelines, monitoring</li></ul></div>
+  </div>
+</section>
+<div style="line-height:0;"><svg viewBox="0 0 1400 74" width="100%" height="74" fill="none"><path d="M0,25 C500,100 900,-40 1400,45 L1400,74 L0,74 Z" fill="#fff3e0"/></svg></div>
 
-  <!-- Features Section -->
-  <section class="container py-5">
-    <h2 class="section-title text-center mb-5" data-aos="fade-right">Why Choose Me?</h2>
-    <div class="row g-4">
-      <div class="col-md-4" data-aos="fade-up">
-        <div class="card p-4 h-100 text-center">
-         <i class="fa-solid fa-cloud-arrow-up fa-2x mb-2 text-primary"></i>
-         <h5 class="mt-2 mb-1">Cloud & Kubernetes Wizardry</h5>
-         <p>World-class expertise in cloud-native deployments; GCP, AWS, and battle-proven K8s architectures.</p>
-        </div>
-      </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-        <div class="card p-4 h-100 text-center">
-         <i class="fa-solid fa-gears fa-2x mb-2 text-primary"></i>
-         <h5 class="mt-2 mb-1">CI/CD, Modern DevOps</h5>
-         <p>Automated pipelines, seamless delivery, robust monitoring, and fast recovery for mission-critical apps.</p>
-        </div>
-      </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="card p-4 h-100 text-center">
-         <i class="fa-solid fa-shield-halved fa-2x mb-2 text-primary"></i>
-         <h5 class="mt-2 mb-1">Security & Business Impact</h5>
-         <p>Going beyond tech: actionable advice, tailored training, and cost-saving strategies for real-life business growth.</p>
-        </div>
+<!-- Services -->
+<section id="services" class="container py-5">
+  <h2 class="dynamic-header text-center mb-4">Services<div class="animated-underline mx-auto"></div></h2>
+  <div class="row g-4">
+    <div class="col-md-6" data-aos="fade-right">
+      <div class="card p-4 service-tile">
+        <h5>DevOps Advisor as a Service</h5>
+        <ul>
+          <li>Infra reviews, rapid troubleshooting, Slack/Zoom consults</li>
+          <li>Monthly reporting, cloud health checks</li>
+        </ul>
       </div>
     </div>
-  </section>
-  
-  <!-- Call to Action -->
-  <section class="container text-center py-4">
-    <a href="/contact" class="btn btn-primary btn-lg" data-aos="fade-in" data-aos-delay="150">Book a Free Consultation</a>
-    <p class="mt-3" data-aos="fade-in" data-aos-delay="250"> <strong>Ready to lead your DevOps transformation?</strong> Let’s build the future of your tech together.</p>
-  </section>
+    <div class="col-md-6" data-aos="fade-left">
+      <div class="card p-4 service-tile">
+        <h5>Kubernetes & Cloud Engineering</h5>
+        <ul>
+          <li>Migrations, DR, autoscaling</li>
+          <li>IaC (Terraform, Helm), cost optimization</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6" data-aos="fade-right" data-aos-delay="100">
+      <div class="card p-4 service-tile">
+        <h5>CI/CD & Automation</h5>
+        <ul>
+          <li>Lightning-fast release pipelines</li>
+          <li>Monitoring, auto-remediation</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6" data-aos="fade-left" data-aos-delay="100">
+      <div class="card p-4 service-tile">
+        <h5>Training / Mentoring</h5>
+        <ul>
+          <li>Workshops: IaC, GitOps, incident response</li>
+          <li>Mentoring, onboarding, best practices</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<div style="line-height:0;"><svg viewBox="0 0 1400 74" width="100%" height="74" fill="none"><path d="M0,24 C500,100 900,-40 1400,45 L1400,74 L0,74 Z" fill="#fff"/></svg></div>
 
-  <%- include('partials/footer') %>
+<!-- Projects -->
+<section id="projects" class="container py-5">
+  <h2 class="dynamic-header text-center mb-4">Projects<div class="animated-underline mx-auto"></div></h2>
+  <div class="row g-4">
+    <% const projects = [
+      { title: 'GCP Multi-Region Migration', summary: '99.99% uptime, -18% cost', detail: 'Multi-GKE, Terraform, DR, release optimization' },
+      { title: 'FreePBX on K8s', summary: 'Telephony as microservice', detail: 'Helm charts, auto-scaling, CI/CD' },
+      { title: 'GitHub Actions Accelerator', summary: 'From PR to deploy in 7mins', detail: 'CI/CD templates, blue/green, auto notification' },
+      { title: 'Zero-Downtime DR', summary: 'Banking APIs, 0s data loss', detail: 'Cloud backup, DR playbooks, monitored drills' }
+    ]; %>
+    <% projects.forEach((p,i) => { %>
+      <div class="col-md-6" data-aos="zoom-in" data-aos-delay="<%= i*80 %>">
+        <div class="card p-4 h-100 project-hover">
+          <h5><%= p.title %></h5>
+          <p><%= p.summary %></p>
+          <div class="project-extra"><p><%= p.detail %></p></div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<div style="line-height:0;"><svg viewBox="0 0 1400 74" width="100%" height="74" fill="none"><path d="M0,12 C500,90 900,-48 1400,32 L1400,74 L0,74 Z" fill="#fffcf6"/></svg></div>
 
-  <!-- Typed.js Typewriter -->
-  <script>
-    var typed = new Typed('#typed-text', {
-      strings: [
-        "Nithees Balaji Mohan",
-        "DevOps Architect",
-        "Kubernetes, GCP, CI/CD, Security",
-        "Built for Scale. Built for Impact."
-      ],
-      typeSpeed: 55,
-      backSpeed: 30,
-      loop: true
-    });
-  </script>
-  <!-- Animated Counters -->
-  <script>
-    document.querySelectorAll('.counter').forEach(counter => {
-      counter.innerText = '0';
-      const update = () => {
-        const target = +counter.getAttribute('data-target');
-        let count = +counter.innerText;
-        const inc = Math.max(1, Math.ceil(target / 40));
-        if (count < target) {
-          counter.innerText = count + inc;
-          setTimeout(update, 20);
-        } else {
-          counter.innerText = target;
-        }
-      };
-      update();
-    });
-  </script>
+<!-- Testimonials -->
+<section id="testimonials" class="container py-5 text-center">
+  <h2 class="dynamic-header mb-5">Testimonials<div class="animated-underline mx-auto"></div></h2>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div id="testimonial-carousel" class="carousel slide" data-bs-ride="carousel" data-aos="zoom-in">
+        <div class="carousel-inner">
+          <div class="carousel-item active testimonial p-4">
+            “Transformed our releases—automation speed and reliability were game changers for us.”
+            <div class="testimonial-author mt-2">&mdash; CTO, ZenFinTech</div>
+          </div>
+          <div class="carousel-item testimonial p-4">
+            “Clear, actionable advice. Our GCP costs dropped by 20%, and support turnaround was instant.”
+            <div class="testimonial-author mt-2">&mdash; Founder, SmartRetail</div>
+          </div>
+          <div class="carousel-item testimonial p-4">
+            “Nithees trained our whole DevOps team—senior and junior—bridging knowledge gaps fast.”
+            <div class="testimonial-author mt-2">&mdash; Lead Engineer, SaaSify.io</div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonial-carousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonial-carousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+      </div>
+    </div>
+  </div>
+</section>
+<div style="line-height:0;"><svg viewBox="0 0 1400 74" width="100%" height="74" fill="none"><path d="M0,16 C500,90 900,-39 1400,41 L1400,74 L0,74 Z" fill="#fff"/></svg></div>
+
+<!-- Contact -->
+<section id="contact" class="container py-5">
+  <div class="row align-items-center">
+    <div class="col-md-5 text-center mb-3" data-aos="flip-left">
+      <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_w51pcehl.json"
+        background="transparent" speed="1" style="width:160px;height:160px;" loop autoplay></lottie-player>
+      <p class="mt-3 mb-0 h6 fw-bold" style="color:#ff9000;">Let's build something amazing!</p>
+    </div>
+    <div class="col-md-7">
+      <h2 class="dynamic-header mb-4">Contact<div class="animated-underline"></div></h2>
+      <form action="mailto:nitheesbalajigmail.com" method="post" enctype="text/plain" class="contact-form">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
+          <label for="name">Your Name</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+          <label for="email">Your Email</label>
+        </div>
+        <div class="form-floating mb-4">
+          <textarea class="form-control" name="message" id="message" placeholder="Message" style="height: 120px;" required></textarea>
+          <label for="message">Your Message</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg px-5">Send</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const nav = document.getElementById('navList');
-  const highlight = document.getElementById('nav-underline-highlight');
-  const links = nav.querySelectorAll(".nav-animate-link");
-  function moveHighlight(el) {
-    const rect = el.getBoundingClientRect();
-    const navRect = nav.getBoundingClientRect();
-    highlight.style.left = (rect.left - navRect.left) + "px";
-    highlight.style.top = (rect.top - navRect.top) + "px";
-    highlight.style.width = rect.width + "px";
-    highlight.style.height = rect.height + "px";
-    highlight.style.opacity = 1;
-  }
-  links.forEach(link => {
-    link.addEventListener("mouseenter", () => moveHighlight(link));
-    link.addEventListener("focus", () => moveHighlight(link));
-  });
-  nav.addEventListener("mouseleave", () => {
-    highlight.style.opacity = 0;
-  });
-  // On load, show under current active item if any
-  const active = nav.querySelector('.active-nav');
-  if (active) moveHighlight(active);
+// Testimonials carousel activate
+var el = document.getElementById("testimonial-carousel");
+if (el) new bootstrap.Carousel(el,{interval:6000, pause:false});
+
+// Project card hover
+document.querySelectorAll('.project-hover').forEach(card=>{
+  card.onmouseenter=()=>card.querySelector('.project-extra').style.display='block';
+  card.onmouseleave=()=>card.querySelector('.project-extra').style.display='none';
 });
 </script>
-</body>
-</html>
+
+<%- include('partials/footer') %>
