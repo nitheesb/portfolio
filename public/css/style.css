@@ -1,13 +1,14 @@
 body {
   font-family: 'Montserrat', sans-serif;
-  background: #f4f7fc;
-  color: #1b2231;
+  background: #fff;
+  color: #292830;
 }
 
+/* Orange-gradient hero section */
 .hero {
   min-height: 70vh;
-  background: linear-gradient(120deg,#1e5efd 0%,#49c3ff 50%,#fff700 100%);
-  background-size: 200% 200%;
+  background: linear-gradient(120deg, #ff7300 0%, #ffb84d 100%);
+  background-size: 180% 180%;
   animation: gradient-flow 6s ease-in-out infinite;
   color: #fff;
   position: relative;
@@ -23,24 +24,27 @@ body {
   transition: transform .3s cubic-bezier(.25,.8,.25,1), box-shadow .3s;
   border: none;
   border-radius: 1.25rem;
-  box-shadow: 0 8px 38px 0 rgba(30,94,253,0.13);
+  box-shadow: 0 8px 38px 0 #ff730022;
+  background: #fff;
 }
 .card:hover {
   transform: translateY(-12px) scale(1.03);
-  box-shadow: 0 16px 48px rgba(30,94,253,0.22);
+  box-shadow: 0 16px 48px #ff730066;
 }
 
+/* Orange number counters */
 .counter {
   font-size: 2.5rem;
-  color: #fb0081;
+  color: #ff7300;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
 }
 
+/* Filter button: orange outline/active */
 .filter-btn {
   background-color: #fff;
-  color: #007bff;
-  border: 1.5px solid #007bff;
+  color: #ff7300;
+  border: 1.5px solid #ff7300;
   margin: .25rem .5rem;
   border-radius: 2rem;
   padding: .5rem 1.25rem;
@@ -49,11 +53,12 @@ body {
   transition: background .3s,color .3s;
 }
 .filter-btn.active, .filter-btn:hover {
-  background: #1e5efd;
+  background: #ff7300;
   color: #fff;
-  border-color: #1e5efd;
+  border-color: #ff7300;
 }
 
+/* Animated gradient orange header */
 .dynamic-header {
   font-size: 2.4rem;
   font-weight: 800;
@@ -61,7 +66,7 @@ body {
   display: inline-block;
   position: relative;
   line-height: 1.1;
-  background: linear-gradient(90deg, #1e5efd, #fb0081, #1e5efd);
+  background: linear-gradient(90deg, #ff7300, #ffb84d, #ff7300 80%);
   background-size: 400% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -71,10 +76,12 @@ body {
   0% {background-position: 0% 50%;}
   100% {background-position: 100% 50%;}
 }
+
+/* Orange animated underline */
 .animated-underline {
   height: 4px;
   width: 80px;
-  background: linear-gradient(90deg, #fb0081, #1e5efd, #fb0081);
+  background: linear-gradient(90deg, #ffb84d, #ff7300, #ffb84d);
   border-radius: 2px;
   margin-top: 0.8rem;
   position: relative;
@@ -85,10 +92,11 @@ body {
   100% { width: 120px; background-position: 120px; }
 }
 
+/* Timeline and skills key colors */
 .timeline {position:relative;}
 .timeline-item {background: #fff; border-radius: 1rem; margin-bottom: 2rem; padding: 1.5rem; position:relative;}
-.timeline-item.left:before {content:""; position:absolute; left:-1rem; top:1.5rem; width:9px; height:9px; background: #1e5efd; border-radius:100%; }
-.timeline-item.right:before {content:""; position:absolute; right:-1rem; top:1.5rem; width:9px; height:9px; background: #fb0081; border-radius:100%;}
+.timeline-item.left:before {content:""; position:absolute; left:-1rem; top:1.5rem; width:9px; height:9px; background: #ff7300; border-radius:100%; }
+.timeline-item.right:before {content:""; position:absolute; right:-1rem; top:1.5rem; width:9px; height:9px; background: #ffb84d; border-radius:100%;}
 
 .skill-tile {
   transition: box-shadow .25s, transform .22s;
@@ -96,20 +104,21 @@ body {
   background: #fcfcfd;
 }
 .skill-tile:hover {
-  box-shadow: 0 2px 22px #1e5efd77;
+  box-shadow: 0 2px 22px #ff730077;
   transform: scale(1.12) rotate(-3deg);
+  border-color: #ff7300 !important;
 }
 
+/* Project cards orange highlight */
 .project-hover {
   position: relative;
   cursor: pointer;
   transition: box-shadow .2s;
 }
-
 .project-hover .project-extra {
   position: absolute;
   left: 0; right: 0; bottom: 0;
-  background: #fb0081cc;
+  background: #fea053cc;
   color: #fff;
   padding: .6rem 1rem;
   border-radius: 0 0 1rem 1rem;
@@ -119,12 +128,13 @@ body {
   display: none;
 }
 .project-hover:hover {
-  box-shadow: 0 2px 30px #fb008199;
+  box-shadow: 0 2px 30px #ff730099;
 }
 .project-hover:hover .project-extra {
   display: block;
 }
 
+/* Testimonial styling, orange author */
 .testimonial {
   font-style: italic;
   color: #525e7b;
@@ -132,53 +142,75 @@ body {
 }
 .testimonial-author {
   font-weight: bold;
-  color: #1e5efd;
+  color: #ff7300;
 }
 
+/* Lottie hero sizing */
 .lottie-hero {
   width: 200px; 
   margin: 0 auto 2rem auto;
 }
 
+/* Contact form focus orange */
 .contact-form .form-control:focus {
-  border-color: #fb0081;
-  box-shadow: 0 0 0 0.2rem #fb008122;
+  border-color: #ff7300;
+  box-shadow: 0 0 0 0.2rem #ff730022;
+}
+.contact-form .btn-primary {
+  background: #ff7300;
+  border-color: #ff7300;
+  color: #fff;
+  font-weight: bold;
 }
 .contact-form .btn-primary:hover {
-  background: #fb0081;
-  border-color: #fb0081;
+  background: #ffb84d;
+  border-color: #ffb84d;
+  color: #fff;
 }
 
+/* Navbar orange accent + glass effect */
 #main-navbar {
+  background: rgba(255,255,255,0.89);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 28px #ff730016;
   transition: background .4s, box-shadow .3s;
 }
+.navbar-brand span {
+  background: linear-gradient(90deg,#ff7300 30%,#ffb84d 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
 
+/* Navbar pill links */
 .navbar-nav {
   padding: 0.2rem;
 }
-
 .nav-animate-link {
   font-weight: 600;
   font-size: 1.08rem;
-  color: #1e5efd !important;
+  color: #ff7300 !important;
   position: relative;
   background: rgba(255,255,255,0.63);
   transition: color .22s, background .22s, box-shadow .33s;
   z-index:2;
 }
 .nav-animate-link.active-nav, .nav-animate-link:hover, .nav-animate-link:focus {
-  color: #fb0081 !important;
-  background: linear-gradient(90deg,#1e5efd18,#fb008115);
-  box-shadow:0 2px 16px #fb008128;
+  color: #fff !important;
+  background: linear-gradient(90deg,#ff730018,#ffb84d15);
+  box-shadow:0 2px 16px #ff730128;
 }
 
+/* Animated underline highlight bar in navbar */
 #nav-underline-highlight {
   position: absolute;
   height: 36px;
   width: 90px;
   border-radius: 20px;
-  background: linear-gradient(90deg, #1e5efd 60%, #fb0081 100%);
-  box-shadow: 0 3px 15px #1e5efd36;
+  background: linear-gradient(90deg, #ff7300 70%, #ffb84d 100%);
+  box-shadow: 0 3px 15px #ff730016;
   z-index: 0;
   transition: all .33s cubic-bezier(.44,1.02,.54,1), opacity .22s;
   opacity: 0;
