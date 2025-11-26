@@ -1,115 +1,180 @@
-<footer style="padding: 2rem 0; text-align:center; opacity:0.5; font-size:0.8rem;">
-        <p>ENGINEERED BY NITHEES BALAJI © 2025</p>
+<!-- FOOTER CONTENT -->
+    <footer style="border-top: 1px solid var(--border); background: #050505; padding: 3rem 0;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+            <div style="font-family: var(--font-mono); font-size: 0.9rem; color: #666;">
+                SYSTEM_ID: NB_PF_2025<br>
+                LOCATION: BANGKOK, TH
+            </div>
+            <div style="display: flex; gap: 2rem;">
+                <a href="https://github.com/nitheesb" class="nav-item">GITHUB</a>
+                <a href="https://linkedin.com" class="nav-item">LINKEDIN</a>
+                <a href="mailto:nitheesbalaji@gmail.com" class="nav-item">EMAIL</a>
+            </div>
+        </div>
     </footer>
 
+    <!-- INTERACTIVE SCRIPTS -->
     <script>
-        // 1. SMOOTH SCROLL (Lenis)
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            smooth: true
+        // --- 1. PRELOADER LOGIC ---
+        const preloader = document.getElementById('preloader');
+        const loaderProgress = document.querySelector('.loader-progress');
+        const body = document.body;
+
+        window.addEventListener('load', () => {
+            let width = 0;
+            const interval = setInterval(() => {
+                width += Math.random() * 10;
+                if(width > 100) width = 100;
+                loaderProgress.style.width = width + '%';
+                
+                if(width === 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        gsap.to(preloader, {
+                            y: '-100%',
+                            duration: 1,
+                            ease: 'power4.inOut',
+                            onComplete: () => {
+                                body.classList.remove('loading');
+                                startAnimations(); // Trigger Hero animations
+                            }
+                        });
+                    }, 500);
+                }
+            }, 100);
         });
+
+        // --- 2. SMOOTH SCROLL (LENIS) ---
+        const lenis = new Lenis({ duration: 1.2, smooth: true });
         function raf(time) {
             lenis.raf(time);
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
 
-        // 2. CUSTOM CURSOR
-        const cursorDot = document.querySelector('[data-cursor-dot]');
-        const cursorOutline = document.querySelector('[data-cursor-outline]');
-        window.addEventListener("mousemove", function (e) {
-            const posX = e.clientX;
-            const posY = e.clientY;
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-            
-            // Lag effect for outline
-            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+        // --- 3. CUSTOM CURSOR ---
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        document.querySelectorAll('a, .tech-item, .project-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
         });
 
-        // 3. GSAP ANIMATIONS
+        // --- 4. GSAP ANIMATIONS ---
         gsap.registerPlugin(ScrollTrigger);
-        
-        // Hero Reveal
-        gsap.from(".hero-title span", {
-            y: 100, opacity: 0, duration: 1.5, stagger: 0.1, ease: "power4.out"
-        });
-        
-        // Service Cards Hover Effect
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                cursorOutline.style.transform = 'translate(-50%, -50%) scale(2.5)';
-                cursorOutline.style.backgroundColor = 'rgba(255, 94, 0, 0.1)';
-            });
-            card.addEventListener('mouseleave', () => {
-                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursorOutline.style.backgroundColor = 'transparent';
-            });
-        });
 
-        // 4. THREE.JS BACKGROUND (The Particle Network)
+        function startAnimations() {
+            // Text Scramble Effect for Hero Title
+            const titles = new SplitType('.reveal-text', { types: 'chars' });
+            gsap.from(titles.chars, {
+                opacity: 0,
+                y: 50,
+                rotateX: -90,
+                stagger: 0.05,
+                duration: 1,
+                ease: 'back.out(1.7)'
+            });
+
+            // Stats Count Up
+            gsap.utils.toArray('.stat-num').forEach(stat => {
+                const endVal = stat.getAttribute('data-val');
+                if(endVal) {
+                    ScrollTrigger.create({
+                        trigger: stat,
+                        start: 'top 80%',
+                        onEnter: () => {
+                            let obj = { val: 0 };
+                            gsap.to(obj, {
+                                val: endVal,
+                                duration: 2,
+                                ease: 'power2.out',
+                                onUpdate: () => {
+                                    stat.innerText = Math.ceil(obj.val) + (stat.innerText.includes('%') ? '%' : (stat.innerText.includes('m') ? 'm' : ''));
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+
+            // Project Cards Reveal
+            gsap.utils.toArray('.project-card').forEach((card, i) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 85%'
+                    },
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.8,
+                    delay: i * 0.1
+                });
+            });
+        }
+
+        // --- 5. THREE.JS BACKGROUND (The Network Globe) ---
+        const canvas = document.querySelector('#webgl-bg');
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('webgl-canvas'), alpha: true });
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
         
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        // Create Particles
-        const geometry = new THREE.BufferGeometry();
-        const particlesCount = 700;
+        // Create a sphere of particles (The Core)
+        const geometry = new THREE.IcosahedronGeometry(3, 2); // 3 = radius, 2 = detail
+        const wireframe = new THREE.WireframeGeometry(geometry);
+        const lineMaterial = new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.3 });
+        const sphereLines = new THREE.LineSegments(wireframe, lineMaterial);
+        scene.add(sphereLines);
+
+        // Add floating nodes (Satellites)
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 100;
         const posArray = new Float32Array(particlesCount * 3);
 
         for(let i = 0; i < particlesCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 15; // Spread
+            posArray[i] = (Math.random() - 0.5) * 10;
         }
-        geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        
-        const material = new THREE.PointsMaterial({
-            size: 0.02,
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.03,
             color: 0xff5e00,
-            transparent: true,
-            opacity: 0.8,
         });
-
-        const particlesMesh = new THREE.Points(geometry, material);
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
         scene.add(particlesMesh);
 
-        // Connecting Lines (Optional visual complexity)
-        // Kept simple for performance, but the rotation adds depth
-        
-        camera.position.z = 3;
+        camera.position.z = 6;
 
-        // Animation Loop
+        // Interaction
         let mouseX = 0;
         let mouseY = 0;
-
         window.addEventListener('mousemove', (event) => {
             mouseX = event.clientX / window.innerWidth - 0.5;
             mouseY = event.clientY / window.innerHeight - 0.5;
         });
 
-        const clock = new THREE.Clock();
-
         const animate = () => {
-            const elapsedTime = clock.getElapsedTime();
+            requestAnimationFrame(animate);
             
-            // Rotation based on time
-            particlesMesh.rotation.y = elapsedTime * 0.05;
-            particlesMesh.rotation.x = elapsedTime * 0.02;
-
-            // Parallax based on mouse
-            particlesMesh.rotation.y += mouseX * 0.05;
-            particlesMesh.rotation.x += mouseY * 0.05;
+            // Rotate Core
+            sphereLines.rotation.y += 0.002;
+            sphereLines.rotation.x += 0.001;
+            
+            // Particles react to mouse
+            particlesMesh.rotation.y = mouseY * 0.5;
+            particlesMesh.rotation.x = mouseX * 0.5;
+            
+            // Gentle float
+            particlesMesh.position.y = Math.sin(Date.now() * 0.001) * 0.2;
 
             renderer.render(scene, camera);
-            requestAnimationFrame(animate);
-        }
+        };
         animate();
 
-        // Resize handler
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
