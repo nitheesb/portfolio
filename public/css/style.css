@@ -9,14 +9,26 @@
     --font-display: 'Rajdhani', sans-serif;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
-
+/* --- 1. FUTURISTIC CURSOR LOGIC --- */
+/* Default State: Sharp Mecha-Arrow (Orange with White Border) */
 body {
     background: var(--bg);
     color: var(--text);
     font-family: var(--font-display);
     overflow-x: hidden;
+    
+    /* Custom SVG Cursor encoded in Base64 */
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' fill='none'><path d='M2 2L11 29L15 18L26 14L2 2Z' fill='%23ff5e00' stroke='white' stroke-width='2' stroke-linejoin='round'/></svg>") 2 2, auto;
 }
+
+/* Interaction State: Targeting Reticle (Cyan Crosshair) */
+a, button, .nav-btn, .tech-item, .project-card, .svc-item {
+    /* Changes to a crosshair when hovering clickable items */
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' fill='none' stroke='%2300f2ff' stroke-width='2'><circle cx='16' cy='16' r='10' opacity='0.5'/><path d='M16 4V10M16 22V28M4 16H10M22 16H28'/><rect x='15' y='15' width='2' height='2' fill='white'/></svg>") 16 16, pointer;
+}
+
+/* Ensure the follower ring doesn't block the click */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body.loading { overflow: hidden; }
 
@@ -48,15 +60,27 @@ section { padding: 10vh 0; border-bottom: 1px solid var(--border); }
     background-size: 100% 2px, 3px 100%;
 }
 
-/* --- CURSOR --- */
+/* --- HUD RING FOLLOWER (Visual Decoration) --- */
 .cursor {
-    position: fixed; top: 0; left: 0; width: 20px; height: 20px;
-    border: 1px solid var(--primary); border-radius: 50%;
+    position: fixed; top: 0; left: 0; width: 40px; height: 40px;
+    border: 1px dashed var(--primary); border-radius: 50%;
     transform: translate(-50%, -50%); pointer-events: none; z-index: 10000;
-    transition: width 0.3s, height 0.3s, background 0.3s;
-    mix-blend-mode: difference;
+    transition: width 0.2s, height 0.2s, background 0.2s, border-color 0.2s;
+    animation: rotateCursor 10s linear infinite;
+    opacity: 0.7;
 }
-.cursor.hovered { width: 50px; height: 50px; background: rgba(255, 94, 0, 0.2); border-color: transparent; }
+
+/* When hovering links, the ring turns cyan and expands */
+.cursor.hovered { 
+    width: 60px; 
+    height: 60px; 
+    background: rgba(0, 242, 255, 0.05); 
+    border-color: var(--secondary);
+    border-style: solid;
+}
+
+@keyframes rotateCursor { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+
 
 /* --- NAV --- */
 .navbar {
@@ -79,7 +103,7 @@ section { padding: 10vh 0; border-bottom: 1px solid var(--border); }
 }
 .nav-btn:hover { background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary); }
 
-/* --- HERO GRID (NEW) --- */
+/* --- HERO GRID --- */
 .hero { min-height: 100vh; display: flex; align-items: center; position: relative; }
 .hero-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: center; width: 100%; }
 
