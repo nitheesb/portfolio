@@ -1,27 +1,19 @@
 <%- include('partials/header') %>
 <main>
 
-<!-- Hero Section -->
+<!-- HERO SECTION: Techy Lottie + Animated Particle Background -->
 <section id="hero" class="hero py-5 position-relative" style="overflow:hidden;">
-  <!-- SVG dynamic background shapes -->
-  <svg id="hero-bg" style="position:absolute;top:0;left:0;width:100vw;height:110vh;z-index:1;" viewBox="0 0 1400 550" fill="none">
-    <ellipse cx="400" cy="120" rx="220" ry="100" fill="#ffe3c1" opacity="0.28"/>
-    <ellipse cx="1100" cy="280" rx="260" ry="80" fill="#ff9000" opacity="0.14"/>
-    <ellipse cx="700" cy="440" rx="220" ry="110" fill="#ffd4a3" opacity="0.10"/>
-    <!-- mouse-following dot (will animate in JS) -->
-    <circle id="follow-dot" cx="700" cy="270" r="26" fill="#ff9000" opacity="0.22"/>
-  </svg>
+  <div id="particles-js" style="position:absolute;top:0;left:0;width:100vw;height:100vh;z-index:1;"></div>
   <div class="container text-center position-relative" style="z-index:3;">
-    <div class="lottie-hero mb-4" data-aos="zoom-in">
-      <!-- Techy Lottie, e.g. futuristic device -->
-      <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_oku7g1ui.json" background="transparent" speed="1.1" style="width:140px;height:140px;" loop autoplay></lottie-player>
+    <div class="lottie-hero mb-4" style="margin-top: 80px;">
+      <lottie-player src="https://assets9.lottiefiles.com/private_files/lf30_u2eytfie.json"
+        background="transparent" speed="1" style="width:130px;height:130px;" loop autoplay></lottie-player>
     </div>
     <h1 class="display-4 fw-bold mb-3 dynamic-header">
       <span id="type-hero"></span>
     </h1>
     <p class="lead mb-4 text-dark">Cloud Native · Automation · DevOps Leadership</p>
     <a href="#contact" class="btn btn-primary btn-lg px-5 shadow-sm">Get in touch</a>
-    <br>
     <span class="pt-3" style="display:inline-block;font-size:2rem;color:#ff9000;font-weight:bold;">
       <i class="fa-solid fa-angles-down"></i>
     </span>
@@ -30,9 +22,8 @@
 <div style="line-height:0;">
 <svg viewBox="0 0 1400 74" width="100%" height="74" fill="none"><path d="M0,18 C500,95 900,-45 1400,30 L1400,74 L0,74 Z" fill="#fff"/></svg>
 </div>
-<!-- Section divider -->
 
-<!-- About -->
+<!-- ABOUT -->
 <section id="about" class="container py-5">
   <div class="row align-items-center mb-4">
     <div class="col-md-4 text-center" data-aos="fade-up">
@@ -46,12 +37,11 @@
       <p class="lead mb-2">Senior DevOps / Infrastructure Engineer who delivers scalable, secure, and cost-effective cloud solutions for startups and enterprises. Specialized in Kubernetes, AWS, GCP, IaC, CI/CD, automation, and disaster recovery.</p>
       <ul>
         <li>Cloud & Kubernetes transformation for unicorn startups & global businesses</li>
-        <li>Team leadership, mentoring & best practices evangelism (EVERYWHERE: Thailand, India, Malaysia, etc.)</li>
+        <li>Team leadership, mentoring & best practices evangelism (TH, IN, MY, etc.)</li>
         <li>Cut GCP spend by 18%, enabled 99.99% uptime for fast-growing organizations</li>
       </ul>
     </div>
   </div>
-  <!-- Career Timeline (optional, can be expanded) -->
   <div class="timeline mb-4">
     <div class="timeline-item left" data-aos="fade-right"><h5>Rabbit Care (2023–Present)</h5><ul><li>GCP automation, GKE, DR — 18% cloud cost savings</li></ul></div>
     <div class="timeline-item right" data-aos="fade-left"><h5>Brikl</h5><ul><li>AWS security, Terraform infra, dev productivity up</li></ul></div>
@@ -60,7 +50,7 @@
 </section>
 <div style="line-height:0;"><svg viewBox="0 0 1400 74" width="100%" height="74" fill="none"><path d="M0,25 C500,100 900,-40 1400,45 L1400,74 L0,74 Z" fill="#fff3e0"/></svg></div>
 
-<!-- Services -->
+<!-- SERVICES -->
 <section id="services" class="container py-5">
   <h2 class="dynamic-header text-center mb-4">Services<div class="animated-underline mx-auto"></div></h2>
   <div class="row g-4">
@@ -104,14 +94,14 @@
 </section>
 <div style="line-height:0;"><svg viewBox="0 0 1400 74" width="100%" height="74" fill="none"><path d="M0,24 C500,100 900,-40 1400,45 L1400,74 L0,74 Z" fill="#fff"/></svg></div>
 
-<!-- Projects -->
+<!-- PROJECTS -->
 <section id="projects" class="container py-5">
   <h2 class="dynamic-header text-center mb-4">Projects<div class="animated-underline mx-auto"></div></h2>
   <div class="row g-4">
     <% const projects = [
       { title: 'GCP Multi-Region Migration', summary: '99.99% uptime, -18% cost', detail: 'Multi-GKE, Terraform, DR, release optimization' },
       { title: 'FreePBX on K8s', summary: 'Telephony as microservice', detail: 'Helm charts, auto-scaling, CI/CD' },
-      { title: 'GitHub Actions Accelerator', summary: 'From PR to deploy in 7mins', detail: 'CI/CD templates, blue/green, auto notification' },
+      { title: 'GitHub Actions Accelerator', summary: 'From PR to deploy in 7min', detail: 'CI/CD templates, blue/green, auto notification' },
       { title: 'Zero-Downtime DR', summary: 'Banking APIs, 0s data loss', detail: 'Cloud backup, DR playbooks, monitored drills' }
     ]; %>
     <% projects.forEach((p,i) => { %>
@@ -127,7 +117,7 @@
 </section>
 <div style="line-height:0;"><svg viewBox="0 0 1400 74" width="100%" height="74" fill="none"><path d="M0,12 C500,90 900,-48 1400,32 L1400,74 L0,74 Z" fill="#fffcf6"/></svg></div>
 
-<!-- Testimonials -->
+<!-- TESTIMONIALS -->
 <section id="testimonials" class="container py-5 text-center">
   <h2 class="dynamic-header mb-5">Testimonials<div class="animated-underline mx-auto"></div></h2>
   <div class="row justify-content-center">
@@ -155,7 +145,7 @@
 </section>
 <div style="line-height:0;"><svg viewBox="0 0 1400 74" width="100%" height="74" fill="none"><path d="M0,16 C500,90 900,-39 1400,41 L1400,74 L0,74 Z" fill="#fff"/></svg></div>
 
-<!-- Contact -->
+<!-- CONTACT -->
 <section id="contact" class="container py-5">
   <div class="row align-items-center">
     <div class="col-md-5 text-center mb-3" data-aos="flip-left">
@@ -185,39 +175,27 @@
 </section>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@3.1.0/tsparticles.bundle.min.js"></script>
 <script>
-// Testimonials carousel activate
-var el = document.getElementById("testimonial-carousel");
-if (el) new bootstrap.Carousel(el,{interval:6000, pause:false});
-
-// Project card hover
-document.querySelectorAll('.project-hover').forEach(card=>{
-  card.onmouseenter=()=>card.querySelector('.project-extra').style.display='block';
-  card.onmouseleave=()=>card.querySelector('.project-extra').style.display='none';
+tsParticles.load("particles-js", {
+  background: { color: "#fff" },
+  fpsLimit: 60,
+  particles: {
+    color: { value: "#ff9000" },
+    links: { enable: true, color: "#ff9000", distance: 120, opacity: 0.5, width: 2 },
+    move: { direction: "none", enable: true, speed: 1.5, outModes: "bounce" },
+    number: { value: 42 },
+    opacity: { value: 0.53 },
+    shape: { type: "circle" },
+    size: { value: 3.8, random: { enable: true, minimumValue: 2 } }
+  },
+  interactivity: {
+    events: { onHover: { enable: true, mode: "repulse" }, resize: true },
+    modes: { repulse: { distance: 90, duration: 0.35 } }
+  },
+  detectRetina: true
 });
-</script>
-
-<script>
-// Mouse-following dot in SVG
-document.addEventListener('mousemove', function(e) {
-  const svg = document.getElementById('hero-bg');
-  const dot = document.getElementById('follow-dot');
-  if (svg && dot) {
-    // Get mouse pos relative to SVG
-    const rect = svg.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    // Constrain for hero section only
-    if (x > 0 && y > 0 && x < rect.width && y < rect.height) {
-      dot.setAttribute('cx', x);
-      dot.setAttribute('cy', y);
-      dot.setAttribute('opacity', 0.25 + 0.08 * Math.abs(Math.sin(Date.now()/300)));
-    }
-  }
-});
-</script>
-
-<script>
+// Typed.js tech headline
 new Typed('#type-hero', {
   strings: [
     "Building Resilient Cloud Infrastructure.",
@@ -226,6 +204,14 @@ new Typed('#type-hero', {
     "Nithees Balaji Mohan | Your Tech Advisor."
   ],
   typeSpeed: 58, backSpeed: 36, loop: true
+});
+// Testimonials carousel
+var el = document.getElementById("testimonial-carousel");
+if (el) new bootstrap.Carousel(el, {interval: 5400, pause: false});
+// Project card hover details
+document.querySelectorAll('.project-hover').forEach(card=>{
+  card.onmouseenter=()=>card.querySelector('.project-extra').style.display='block';
+  card.onmouseleave=()=>card.querySelector('.project-extra').style.display='none';
 });
 </script>
 
