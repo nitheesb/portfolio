@@ -234,3 +234,10 @@ body {
 @media (max-width: 991.98px) {
   #nav-underline-highlight { display: none; }
 }
+
+#hero-bg {
+  pointer-events:none;
+}
+#follow-dot {
+  transition: cx .32s cubic-bezier(.42,0,.58,1), cy .32s cubic-bezier(.42,0,.58,1), opacity .15s;
+}

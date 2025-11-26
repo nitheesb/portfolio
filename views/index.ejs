@@ -2,21 +2,35 @@
 <main>
 
 <!-- Hero Section -->
-<section id="hero" class="hero py-5 align-items-center d-flex">
-  <div class="container text-center">
+<section id="hero" class="hero py-5 position-relative" style="overflow:hidden;">
+  <!-- SVG dynamic background shapes -->
+  <svg id="hero-bg" style="position:absolute;top:0;left:0;width:100vw;height:110vh;z-index:1;" viewBox="0 0 1400 550" fill="none">
+    <ellipse cx="400" cy="120" rx="220" ry="100" fill="#ffe3c1" opacity="0.28"/>
+    <ellipse cx="1100" cy="280" rx="260" ry="80" fill="#ff9000" opacity="0.14"/>
+    <ellipse cx="700" cy="440" rx="220" ry="110" fill="#ffd4a3" opacity="0.10"/>
+    <!-- mouse-following dot (will animate in JS) -->
+    <circle id="follow-dot" cx="700" cy="270" r="26" fill="#ff9000" opacity="0.22"/>
+  </svg>
+  <div class="container text-center position-relative" style="z-index:3;">
     <div class="lottie-hero mb-4" data-aos="zoom-in">
-      <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_oqpbtola.json"
-        background="transparent" speed="1" style="width:160px;height:160px;" loop autoplay></lottie-player>
+      <!-- Techy Lottie, e.g. futuristic device -->
+      <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_oku7g1ui.json" background="transparent" speed="1.1" style="width:140px;height:140px;" loop autoplay></lottie-player>
     </div>
-    <h1 class="display-3 fw-bold mb-2 dynamic-header">Nithees Balaji Mohan</h1>
-    <p class="lead mb-4">Cloud Native DevOps Architect | Automation | Reliability | Team Leadership</p>
-    <a href="#contact" class="btn btn-primary btn-lg px-4">Contact Me</a>
+    <h1 class="display-4 fw-bold mb-3 dynamic-header">
+      <span id="type-hero"></span>
+    </h1>
+    <p class="lead mb-4 text-dark">Cloud Native · Automation · DevOps Leadership</p>
+    <a href="#contact" class="btn btn-primary btn-lg px-5 shadow-sm">Get in touch</a>
+    <br>
+    <span class="pt-3" style="display:inline-block;font-size:2rem;color:#ff9000;font-weight:bold;">
+      <i class="fa-solid fa-angles-down"></i>
+    </span>
   </div>
 </section>
-<!-- Section divider -->
 <div style="line-height:0;">
 <svg viewBox="0 0 1400 74" width="100%" height="74" fill="none"><path d="M0,18 C500,95 900,-45 1400,30 L1400,74 L0,74 Z" fill="#fff"/></svg>
 </div>
+<!-- Section divider -->
 
 <!-- About -->
 <section id="about" class="container py-5">
@@ -180,6 +194,38 @@ if (el) new bootstrap.Carousel(el,{interval:6000, pause:false});
 document.querySelectorAll('.project-hover').forEach(card=>{
   card.onmouseenter=()=>card.querySelector('.project-extra').style.display='block';
   card.onmouseleave=()=>card.querySelector('.project-extra').style.display='none';
+});
+</script>
+
+<script>
+// Mouse-following dot in SVG
+document.addEventListener('mousemove', function(e) {
+  const svg = document.getElementById('hero-bg');
+  const dot = document.getElementById('follow-dot');
+  if (svg && dot) {
+    // Get mouse pos relative to SVG
+    const rect = svg.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    // Constrain for hero section only
+    if (x > 0 && y > 0 && x < rect.width && y < rect.height) {
+      dot.setAttribute('cx', x);
+      dot.setAttribute('cy', y);
+      dot.setAttribute('opacity', 0.25 + 0.08 * Math.abs(Math.sin(Date.now()/300)));
+    }
+  }
+});
+</script>
+
+<script>
+new Typed('#type-hero', {
+  strings: [
+    "Building Resilient Cloud Infrastructure.",
+    "Automating Everything. Securing Every Release.",
+    "DevOps Leadership. Business Impact.",
+    "Nithees Balaji Mohan | Your Tech Advisor."
+  ],
+  typeSpeed: 58, backSpeed: 36, loop: true
 });
 </script>
 
