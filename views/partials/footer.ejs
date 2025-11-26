@@ -1,17 +1,120 @@
-<footer class="text-center py-4 mt-5">
-  <div>
-    © 2025 Nithees Balaji Mohan &middot; DevOps Expert
-    &middot; <a href="#about" class="text-orange">About</a>
-    &middot; <a href="#services" class="text-orange">Services</a>
-  </div>
-  <div class="mt-2">
-    <a href="mailto:nitheesbalajigmail.com" class="mx-2 text-orange"><i class="fa-solid fa-envelope"></i></a>
-    <a href="https://www.linkedin.com/in/yourlinkedin" target="_blank" class="mx-2 text-orange"><i class="fab fa-linkedin"></i></a>
-    <a href="https://github.com/nitheesb" target="_blank" class="mx-2 text-orange"><i class="fab fa-github"></i></a>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>AOS.init({once:true});</script>
-</footer>
+<footer style="padding: 2rem 0; text-align:center; opacity:0.5; font-size:0.8rem;">
+        <p>ENGINEERED BY NITHEES BALAJI © 2025</p>
+    </footer>
+
+    <script>
+        // 1. SMOOTH SCROLL (Lenis)
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            smooth: true
+        });
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // 2. CUSTOM CURSOR
+        const cursorDot = document.querySelector('[data-cursor-dot]');
+        const cursorOutline = document.querySelector('[data-cursor-outline]');
+        window.addEventListener("mousemove", function (e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            
+            // Lag effect for outline
+            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+        });
+
+        // 3. GSAP ANIMATIONS
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Hero Reveal
+        gsap.from(".hero-title span", {
+            y: 100, opacity: 0, duration: 1.5, stagger: 0.1, ease: "power4.out"
+        });
+        
+        // Service Cards Hover Effect
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                cursorOutline.style.transform = 'translate(-50%, -50%) scale(2.5)';
+                cursorOutline.style.backgroundColor = 'rgba(255, 94, 0, 0.1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursorOutline.style.backgroundColor = 'transparent';
+            });
+        });
+
+        // 4. THREE.JS BACKGROUND (The Particle Network)
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('webgl-canvas'), alpha: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // Create Particles
+        const geometry = new THREE.BufferGeometry();
+        const particlesCount = 700;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for(let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 15; // Spread
+        }
+        geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        
+        const material = new THREE.PointsMaterial({
+            size: 0.02,
+            color: 0xff5e00,
+            transparent: true,
+            opacity: 0.8,
+        });
+
+        const particlesMesh = new THREE.Points(geometry, material);
+        scene.add(particlesMesh);
+
+        // Connecting Lines (Optional visual complexity)
+        // Kept simple for performance, but the rotation adds depth
+        
+        camera.position.z = 3;
+
+        // Animation Loop
+        let mouseX = 0;
+        let mouseY = 0;
+
+        window.addEventListener('mousemove', (event) => {
+            mouseX = event.clientX / window.innerWidth - 0.5;
+            mouseY = event.clientY / window.innerHeight - 0.5;
+        });
+
+        const clock = new THREE.Clock();
+
+        const animate = () => {
+            const elapsedTime = clock.getElapsedTime();
+            
+            // Rotation based on time
+            particlesMesh.rotation.y = elapsedTime * 0.05;
+            particlesMesh.rotation.x = elapsedTime * 0.02;
+
+            // Parallax based on mouse
+            particlesMesh.rotation.y += mouseX * 0.05;
+            particlesMesh.rotation.x += mouseY * 0.05;
+
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
 </body>
 </html>
