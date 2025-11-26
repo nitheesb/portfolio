@@ -6,27 +6,46 @@
 <main>
     <!-- SECTION: HERO -->
     <section class="hero container">
-        <div class="hero-content">
-            <div class="status-badge" data-aos="fade-in">
-                <div class="status-dot"></div>
-                <span>SYSTEM OPERATIONAL // REGION: GLOBAL</span>
-            </div>
+        <div class="hero-grid">
             
-            <h1 class="hero-title">
-                <div class="reveal-text">SCALABLE</div>
-                <div class="reveal-text" style="color:var(--primary)">INFRASTRUCTURE</div>
-                <div class="reveal-text">ARCHITECT</div>
-            </h1>
+            <!-- LEFT: TEXT CONTENT -->
+            <div class="hero-content">
+                <div class="status-badge" data-aos="fade-in">
+                    <div class="status-dot"></div>
+                    <span>SYSTEM OPERATIONAL // REGION: GLOBAL</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    <div class="reveal-text">SCALABLE</div>
+                    <div class="reveal-text" style="color:var(--primary)">INFRASTRUCTURE</div>
+                    <div class="reveal-text">ARCHITECT</div>
+                </h1>
 
-            <div class="hero-desc">
-                <p>Hi, I'm Nithees Balaji. I engineer self-healing cloud systems.
-                Specializing in <span style="color:#fff">Kubernetes, Terraform, and GCP Cost Optimization</span>. 
-                I turn chaotic deployments into boring, predictable automated pipelines.</p>
+                <div class="hero-desc">
+                    <p>Hi, I'm Nithees Balaji. I engineer self-healing cloud systems.
+                    Specializing in <span style="color:#fff">Kubernetes, Terraform, and GCP Cost Optimization</span>. 
+                    I turn chaotic deployments into boring, predictable automated pipelines.</p>
+                </div>
+
+                <div style="margin-top: 3rem;">
+                    <a href="#projects" class="nav-btn" style="padding: 1rem 2rem; font-size: 1rem;">VIEW MISSION LOGS</a>
+                </div>
             </div>
 
-            <div style="margin-top: 3rem;">
-                <a href="#projects" class="nav-btn" style="padding: 1rem 2rem; font-size: 1rem;">VIEW MISSION LOGS</a>
+            <!-- RIGHT: PROFILE IMAGE (Holographic Card) -->
+            <div class="hero-image-wrapper">
+                <div class="profile-frame">
+                    <!-- Ensure your image is named profile.jpg in /public/img/ -->
+                    <img src="/img/profile.jpg" alt="Nithees Balaji" class="profile-img">
+                    <div class="frame-corners"></div>
+                    <div class="scan-line"></div>
+                </div>
+                <div class="profile-stats">
+                    <p>ID: NB_ADMIN_01</p>
+                    <p>ACCESS: LEVEL 5 (ROOT)</p>
+                </div>
             </div>
+
         </div>
     </section>
 
@@ -53,7 +72,7 @@
     </section>
 
     <!-- SECTION: TECH STACK (MARQUEE) -->
-    <div class="marquee-section">
+    <div class="marquee-section" id="stack">
         <div class="marquee-track">
             <span class="tech-item">KUBERNETES</span>
             <span class="tech-item">TERRAFORM</span>
