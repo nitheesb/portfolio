@@ -37,7 +37,7 @@
             <div class="hero-image-wrapper">
                 <div class="profile-frame">
                     <!-- Ensure you have your photo at /public/img/profile.jpg -->
-                    <img src="https://ca.slack-edge.com/T0DAXU939-U04TCM739QQ-9d709b5f8bd1-512" alt="Nithees Balaji" class="profile-img">
+                    <img src="/img/profile.jpg" alt="Nithees Balaji" class="profile-img">
                     <div class="frame-corners"></div>
                     <div class="scan-line"></div>
                 </div>
@@ -215,31 +215,44 @@
         </a>
     </section>
 
-    <!-- FEATURE 1: LIVE TELEMETRY WIDGET -->
+    <!-- FEATURE 1: LIVE SYSTEM STATUS BAR (Horizontal) -->
     <div class="telemetry-widget" id="tele-widget">
-        <div class="tele-header" id="tele-toggle-btn">
-            <div class="tele-title"><span class="pulse-dot"></span> LIVE_METRICS</div>
-            <div class="tele-toggle">_</div>
+        <!-- Header / Label -->
+        <div class="tele-header">
+            <span class="pulse-dot"></span> 
+            <span>SYSTEM_METRICS</span>
         </div>
+
+        <!-- Horizontal Grid -->
         <div class="tele-grid">
             <div class="tele-item">
-                <span class="tele-label">CPU_USAGE</span>
-                <span class="tele-value" id="cpu-val">12%</span>
+                <span class="tele-label">CPU:</span>
                 <div class="tele-bar"><div class="tele-fill" id="cpu-bar" style="width:12%"></div></div>
+                <span class="tele-value" id="cpu-val">12%</span>
             </div>
+            
             <div class="tele-item">
-                <span class="tele-label">LATENCY</span>
-                <span class="tele-value" id="lat-val">24ms</span>
+                <span class="tele-label">LATENCY:</span>
                 <div class="tele-bar"><div class="tele-fill" id="lat-bar" style="width:10%"></div></div>
+                <span class="tele-value" id="lat-val">24ms</span>
             </div>
+            
             <div class="tele-item">
-                <span class="tele-label">MEMORY</span>
+                <span class="tele-label">MEM:</span>
                 <span class="tele-value">512MB</span>
-                <div class="tele-bar"><div class="tele-fill" style="width:40%"></div></div>
             </div>
+            
             <div class="tele-item">
-                <span class="tele-label">REGION</span>
+                <span class="tele-label">REGION:</span>
                 <span class="tele-value" style="color:var(--primary)">ASIA-SE1</span>
+            </div>
+            
+            <!-- Spacer -->
+            <div style="flex:1;"></div>
+            
+            <div class="tele-item">
+                <span class="tele-label">SESSION:</span>
+                <span class="tele-value" style="color:#666">ROOT</span>
             </div>
         </div>
     </div>

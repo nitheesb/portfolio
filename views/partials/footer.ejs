@@ -45,22 +45,7 @@
                 });
             });
 
-            // --- 2. LIVE TELEMETRY LOGIC ---
-            const teleWidget = document.getElementById('tele-widget');
-            const teleBtn = document.getElementById('tele-toggle-btn');
-            
-            if(teleBtn && teleWidget) {
-                teleBtn.addEventListener('click', () => {
-                    teleWidget.classList.toggle('minimized');
-                });
-                // Allow maximizing if clicked while minimized
-                teleWidget.addEventListener('click', (e) => {
-                    if(teleWidget.classList.contains('minimized')) {
-                        teleWidget.classList.remove('minimized');
-                    }
-                });
-            }
-
+            // --- 2. LIVE TELEMETRY LOGIC (HORIZONTAL BAR) ---
             function updateTelemetry() {
                 const cpu = Math.floor(Math.random() * (45 - 5) + 5);
                 const lat = Math.floor(Math.random() * (120 - 20) + 20);
@@ -72,12 +57,16 @@
 
                 if(cpuVal) {
                     cpuVal.innerText = cpu + '%';
-                    cpuBar.style.width = cpu + '%';
-                    cpuBar.style.background = cpu > 80 ? '#ff3333' : (cpu > 50 ? '#ffbd2e' : '#ff5e00');
+                    if(cpuBar) {
+                        cpuBar.style.width = cpu + '%';
+                        cpuBar.style.background = cpu > 80 ? '#ff3333' : (cpu > 50 ? '#ffbd2e' : '#ff5e00');
+                    }
                 }
                 if(latVal) {
                     latVal.innerText = lat + 'ms';
-                    latBar.style.width = (lat / 2) + '%';
+                    if(latBar) {
+                        latBar.style.width = (lat / 2) + '%';
+                    }
                 }
             }
             setInterval(updateTelemetry, 2000);
@@ -296,7 +285,7 @@
                         cursor.style.left = e.clientX + 'px';
                         cursor.style.top = e.clientY + 'px';
                     });
-                    document.querySelectorAll('a, button, .project-card, .profile-frame').forEach(el => {
+                    document.querySelectorAll('a, button, .project-card, .profile-frame, .tele-header').forEach(el => {
                         el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
                         el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
                     });
