@@ -21,7 +21,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
-    <!-- Icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body class="loading">
@@ -33,7 +32,7 @@
             <div class="loader-bar"><div class="loader-progress"></div></div>
             <div class="loader-logs">
                 <p>> Authentication: USER_RECOGNIZED</p>
-                <p>> Loading Profile Image...</p>
+                <p>> Optimizing for Mobile Viewport...</p>
                 <p>> Decrypting Portfolio Data...</p>
                 <p>> STATUS: ONLINE</p>
             </div>
@@ -42,8 +41,6 @@
 
     <!-- BACKGROUND CANVAS -->
     <canvas id="webgl-bg"></canvas>
-    
-    <!-- GRID OVERLAY -->
     <div class="grid-overlay"></div>
 
     <!-- NAVIGATION -->
@@ -51,10 +48,29 @@
         <div class="nav-logo">
             <span class="bracket">[</span> NB.SYS <span class="bracket">]</span>
         </div>
-        <div class="nav-links">
-            <a href="#about" class="nav-item" data-text="ABOUT">ABOUT</a>
-            <a href="#stack" class="nav-item" data-text="STACK">STACK</a>
-            <a href="#projects" class="nav-item" data-text="LOGS">LOGS</a>
+        
+        <!-- Desktop Links -->
+        <div class="nav-links desktop-only">
+            <a href="#about" class="nav-item">ABOUT</a>
+            <a href="#stack" class="nav-item">STACK</a>
+            <a href="#projects" class="nav-item">LOGS</a>
             <a href="#contact" class="nav-btn">INITIATE_CONTACT</a>
         </div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="mobile-menu-btn">
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay">
+        <div class="mobile-nav-links">
+            <a href="#about" class="mobile-link">ABOUT_SYSTEM</a>
+            <a href="#stack" class="mobile-link">TECH_STACK</a>
+            <a href="#projects" class="mobile-link">MISSION_LOGS</a>
+            <a href="#contact" class="mobile-link active">INITIATE_CONTACT</a>
+        </div>
+        <div class="mobile-menu-bg-text">MENU</div>
+    </div>
