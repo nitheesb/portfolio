@@ -214,7 +214,57 @@
             INITIATE_HANDSHAKE
         </a>
     </section>
+<!-- FEATURE 1: LIVE TELEMETRY WIDGET (Bottom Left) -->
+    <div class="telemetry-widget">
+        <div class="tele-header">
+            <span class="pulse-dot"></span> LIVE TELEMETRY
+        </div>
+        <div class="tele-grid">
+            <div class="tele-item">
+                <span class="tele-label">CPU_USAGE</span>
+                <span class="tele-value" id="cpu-val">12%</span>
+                <div class="tele-bar"><div class="tele-fill" id="cpu-bar" style="width:12%"></div></div>
+            </div>
+            <div class="tele-item">
+                <span class="tele-label">LATENCY</span>
+                <span class="tele-value" id="lat-val">24ms</span>
+                <div class="tele-bar"><div class="tele-fill" id="lat-bar" style="width:10%"></div></div>
+            </div>
+            <div class="tele-item">
+                <span class="tele-label">MEMORY</span>
+                <span class="tele-value">512MB</span>
+                <div class="tele-bar"><div class="tele-fill" style="width:40%"></div></div>
+            </div>
+            <div class="tele-item">
+                <span class="tele-label">REGION</span>
+                <span class="tele-value" style="color:var(--primary)">ASIA-SE1</span>
+            </div>
+        </div>
+    </div>
 
+    <!-- FEATURE 2: INTERACTIVE TERMINAL (Hidden by default) -->
+    <div id="terminal-overlay" class="terminal-overlay">
+        <div class="terminal-box">
+            <div class="term-header">
+                <div class="term-title"><i class="fas fa-terminal"></i> BASH -- nithees@portfolio:~</div>
+                <button class="term-close" onclick="toggleTerminal()">X</button>
+            </div>
+            <div class="term-body" id="term-output">
+                <div class="term-line">Welcome to NitheesOS v2.0.5</div>
+                <div class="term-line">Type <span class="cmd-highlight">'help'</span> to see available commands.</div>
+                <br>
+            </div>
+            <div class="term-input-line">
+                <span class="prompt">nithees@portfolio:~$</span>
+                <input type="text" id="term-input" autocomplete="off" autofocus>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLOATING TERMINAL BUTTON (Bottom Right) -->
+    <button class="fab-terminal" onclick="toggleTerminal()">
+        <i class="fas fa-terminal"></i>
+    </button>
 </main>
 
 <%- include('partials/footer') %>

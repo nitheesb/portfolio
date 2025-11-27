@@ -195,6 +195,99 @@
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
+// --- 7. LIVE TELEMETRY SIMULATOR ---
+        function updateTelemetry() {
+            // Simulate CPU fluctuations
+            const cpu = Math.floor(Math.random() * (45 - 5) + 5);
+            document.getElementById('cpu-val').innerText = cpu + '%';
+            document.getElementById('cpu-bar').style.width = cpu + '%';
+            
+            // Simulate Latency fluctuations
+            const lat = Math.floor(Math.random() * (120 - 20) + 20);
+            document.getElementById('lat-val').innerText = lat + 'ms';
+            document.getElementById('lat-bar').style.width = (lat / 2) + '%';
+            
+            // Color logic
+            const cpuBar = document.getElementById('cpu-bar');
+            if(cpu > 80) cpuBar.style.background = 'red';
+            else if(cpu > 50) cpuBar.style.background = 'orange';
+            else cpuBar.style.background = '#ff5e00';
+        }
+        setInterval(updateTelemetry, 2000);
+
+        // --- 8. INTERACTIVE TERMINAL LOGIC ---
+        const terminalOverlay = document.getElementById('terminal-overlay');
+        const termInput = document.getElementById('term-input');
+        const termOutput = document.getElementById('term-output');
+
+        function toggleTerminal() {
+            terminalOverlay.classList.toggle('open');
+            if(terminalOverlay.classList.contains('open')) {
+                setTimeout(() => termInput.focus(), 100);
+            }
+        }
+
+        termInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const command = termInput.value.toLowerCase().trim();
+                processCommand(command);
+                termInput.value = '';
+            }
+        });
+
+        function processCommand(cmd) {
+            // Echo the command
+            addToTerm(`nithees@portfolio:~$ ${cmd}`, 'rgba(255,255,255,0.5)');
+
+            switch(cmd) {
+                case 'help':
+                    addToTerm('Available commands:');
+                    addToTerm('- about    : Who am I?');
+                    addToTerm('- stack    : View tech stack');
+                    addToTerm('- contact  : Send email');
+                    addToTerm('- clear    : Clear terminal');
+                    addToTerm('- deploy   : Trigger fake deployment');
+                    break;
+                case 'about':
+                    addToTerm('Senior DevOps Lead based in Bangkok. Obsessed with automation and cost-cutting.');
+                    break;
+                case 'stack':
+                    addToTerm('K8s, Terraform, AWS, GCP, Python, ArgoCD.');
+                    break;
+                case 'contact':
+                    addToTerm('Opening mail client...', 'yellow');
+                    setTimeout(() => window.location.href = "mailto:nitheesbalaji@gmail.com", 1000);
+                    break;
+                case 'clear':
+                    termOutput.innerHTML = '';
+                    break;
+                case 'deploy':
+                    addToTerm('Initiating Deployment Pipeline...', 'cyan');
+                    let progress = 0;
+                    const interval = setInterval(() => {
+                        progress += 20;
+                        addToTerm(`> Compiling assets... [${progress}%]`);
+                        if(progress >= 100) {
+                            clearInterval(interval);
+                            addToTerm('DEPLOYMENT SUCCESSFUL. Production is stable.', '#0f0');
+                        }
+                    }, 400);
+                    break;
+                case '':
+                    break;
+                default:
+                    addToTerm(`Command not found: ${cmd}. Type 'help' for list.`, 'red');
+            }
+        }
+
+        function addToTerm(text, color = '#ddd') {
+            const div = document.createElement('div');
+            div.className = 'term-line';
+            div.style.color = color;
+            div.innerText = text;
+            termOutput.appendChild(div);
+            termOutput.scrollTop = termOutput.scrollHeight;
+        }
     </script>
 </body>
 </html>
