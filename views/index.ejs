@@ -22,22 +22,19 @@
                 </h1>
 
                 <div class="hero-desc">
-                    <p>I am <strong>Nithees Balaji Mohan</strong>. I build resilient, cost-effective cloud engines for high-growth startups. 
-                    With <strong>9+ years of experience</strong>, I specialize in Kubernetes transformations, intelligent cost-cutting, and 
-                    leading engineering teams toward operational excellence.</p>
+                    <p>I am <strong>Nithees Balaji Mohan</strong>, a Senior <strong>DevOps Architect</strong> and Team Lead with over 9 years of experience engineering resilient cloud systems. I specialize in transforming chaotic infrastructure into scalable, cost-effective <strong>DevOps</strong> engines for high-growth enterprises.</p>
                 </div>
 
                 <div style="margin-top: 3rem; display: flex; gap: 1rem;">
-                    <a href="#projects" class="nav-btn" style="padding: 1rem 2rem; font-size: 1rem;">MISSION LOGS</a>
-                    <a href="/resume.pdf" target="_blank" class="nav-btn" style="padding: 1rem 2rem; font-size: 1rem; border-color: #666; color: #aaa;">DOWNLOAD CV</a>
+                    <a href="#projects" class="nav-btn" style="padding: 1rem 2rem; font-size: 1rem;" aria-label="View Project Logs">MISSION LOGS</a>
+                    <a href="/resume.pdf" target="_blank" class="nav-btn" style="padding: 1rem 2rem; font-size: 1rem; border-color: #666; color: #aaa;" aria-label="Download PDF Resume">DOWNLOAD CV</a>
                 </div>
             </div>
 
             <!-- RIGHT: PROFILE IMAGE -->
             <div class="hero-image-wrapper">
                 <div class="profile-frame">
-                    <!-- Ensure you have your photo at /public/img/profile.jpg -->
-                    <img src="https://ca.slack-edge.com/T0DAXU939-U04TCM739QQ-9d709b5f8bd1-512" alt="Nithees Balaji" class="profile-img">
+                    <img src="https://ca.slack-edge.com/T0DAXU939-U04TCM739QQ-9d709b5f8bd1-512" alt="Nithees Balaji DevOps Lead" class="profile-img">
                     <div class="frame-corners"></div>
                     <div class="scan-line"></div>
                 </div>
@@ -73,7 +70,7 @@
         </div>
     </section>
 
-    <!-- SECTION: TECH STACK (Updated) -->
+    <!-- SECTION: TECH STACK -->
     <div class="marquee-section" id="stack">
         <div class="marquee-track">
             <span class="tech-item">KUBERNETES</span>
@@ -94,7 +91,27 @@
         </div>
     </div>
 
-    <!-- SECTION: EXPERIENCE / PROJECTS (Real logs) -->
+    <!-- NEW SECTION: ENGINEERING PHILOSOPHY (Boosts Word Count & Keywords) -->
+    <section class="container" id="philosophy">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+            <div class="desktop-only">
+                <h2 style="font-size: 2.5rem; line-height: 1;">ARCHITECTING<br><span style="color:var(--primary)">RESILIENCE</span></h2>
+            </div>
+            <div>
+                <p class="philosophy-text text-justify">
+                    As a <strong>Lead DevOps Architect</strong>, my methodology goes beyond simple server management. I treat infrastructure as a software product—immutable, versioned, and automated. By leveraging <strong>Kubernetes</strong> orchestration and <strong>Infrastructure as Code (IaC)</strong> strategies with Terraform, I build self-healing environments that require minimal human intervention.
+                </p>
+                <p class="philosophy-text text-justify">
+                    In my role as a Team Lead, I focus on "Shifting Left" on security and cost. This means implementing cost-optimization protocols (like Spot Instance orchestration) and security compliance checks early in the <strong>CI/CD pipeline</strong>. My goal is to empower development teams to deploy rapidly without breaking the budget or compromising system integrity.
+                </p>
+                <p class="philosophy-text text-justify">
+                    Whether migrating legacy monoliths to microservices on <strong>GCP/AWS</strong> or hardening banking-grade security perimeters, my architecture prioritizes observability. If you cannot measure it, you cannot improve it. That is why I enforce strict monitoring standards using Prometheus and NewRelic to guarantee 99.99% uptime for mission-critical applications.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: EXPERIENCE / PROJECTS -->
     <section class="container" id="projects">
         <h2 style="margin-bottom: 4rem;">// OPERATION_LOGS</h2>
         
@@ -109,9 +126,9 @@
                     <span class="tag">Cost Optimization</span>
                 </div>
                 <p class="p-desc" style="margin-top: 1rem;">
-                    <strong>Mission:</strong> Scale infrastructure for Thailand’s leading insurance marketplace while controlling budget bleed.<br>
-                    <strong>Execution:</strong> Orchestrated GKE migration and implemented automated rightsizing policies. Designed Disaster Recovery (DR) protocols.<br>
-                    <strong>Outcome:</strong> Slashed GCP bills by 18%, achieved 99.99% availability, and mentored the junior DevOps squad.
+                    <span class="log-label">Mission:</span> Scale infrastructure for Thailand’s leading insurance marketplace while controlling budget bleed.<br>
+                    <span class="log-label">Execution:</span> Orchestrated GKE migration and implemented automated rightsizing policies. Designed Disaster Recovery (DR) protocols.<br>
+                    <span class="log-label">Outcome:</span> Slashed GCP bills by 18%, achieved 99.99% availability, and mentored the junior DevOps squad.
                 </p>
             </div>
             <div class="p-stats">
@@ -132,9 +149,9 @@
                     <span class="tag">GitHub Actions</span>
                 </div>
                 <p class="p-desc" style="margin-top: 1rem;">
-                    <strong>Mission:</strong> Stabilize microservices deployments and secure the AWS perimeter.<br>
-                    <strong>Execution:</strong> Built AWS Landing Zones using Terraform. Standardized CI/CD pipelines to enforce testing gates before production.<br>
-                    <strong>Outcome:</strong> Reduced deployment failure rate by 60% and secured the platform against common vulnerabilities.
+                    <span class="log-label">Mission:</span> Stabilize microservices deployments and secure the AWS perimeter.<br>
+                    <span class="log-label">Execution:</span> Built AWS Landing Zones using Terraform. Standardized CI/CD pipelines to enforce testing gates before production.<br>
+                    <span class="log-label">Outcome:</span> Reduced deployment failure rate by 60% and secured the platform against common vulnerabilities.
                 </p>
             </div>
             <div class="p-stats">
@@ -155,9 +172,9 @@
                     <span class="tag">Large Scale</span>
                 </div>
                 <p class="p-desc" style="margin-top: 1rem;">
-                    <strong>Mission:</strong> Support massive scale EdTech and Security workloads.<br>
-                    <strong>Execution:</strong> Managed ECS-based container workloads and automated environment spin-ups using Python & Terraform.<br>
-                    <strong>Outcome:</strong> Enabled rapid environment provisioning for development teams, reducing wait times from days to minutes.
+                    <span class="log-label">Mission:</span> Support massive scale EdTech and Security workloads.<br>
+                    <span class="log-label">Execution:</span> Managed ECS-based container workloads and automated environment spin-ups using Python & Terraform.<br>
+                    <span class="log-label">Outcome:</span> Enabled rapid environment provisioning for development teams, reducing wait times from days to minutes.
                 </p>
             </div>
             <div class="p-stats">
@@ -168,7 +185,7 @@
         </article>
     </section>
 
-    <!-- SECTION: SERVICES (Skills detailed) -->
+    <!-- SECTION: SERVICES -->
     <section class="container" id="about">
         <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem;">
             <h2>// KERNEL_MODULES</h2>
@@ -210,9 +227,15 @@
         <h2 style="font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
             NEED A TEAM LEAD WHO SPEAKS CLOUD NATIVE?
         </h2>
-        <a href="mailto:nitheesbalaji@gmail.com" class="nav-btn" style="font-size: 1.5rem; padding: 1.5rem 4rem;">
-            INITIATE_HANDSHAKE
-        </a>
+        
+        <div style="margin-bottom: 2rem;">
+            <a href="tel:+66661177370" class="nav-btn" style="margin: 0 10px; border-color: #666; color: #aaa;">
+                <i class="fas fa-phone"></i> +66 6611 77370
+            </a>
+            <a href="mailto:nitheesbalaji@gmail.com" class="nav-btn" style="font-size: 1.5rem; padding: 1.5rem 4rem; margin: 0 10px;">
+                INITIATE_HANDSHAKE
+            </a>
+        </div>
     </section>
 
     <!-- FEATURE 1: LIVE SYSTEM STATUS BAR (Horizontal) -->
@@ -247,7 +270,6 @@
                 <span class="tele-value" style="color:var(--primary)">ASIA-SE1</span>
             </div>
             
-            <!-- Spacer -->
             <div style="flex:1;"></div>
             
             <div class="tele-item">
@@ -277,7 +299,7 @@
     </div>
 
     <!-- FLOATING TERMINAL BUTTON -->
-    <button class="fab-terminal" id="terminal-btn">
+    <button class="fab-terminal" id="terminal-btn" aria-label="Open Terminal">
         <i class="fas fa-terminal"></i>
     </button>
 </main>

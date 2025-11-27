@@ -205,6 +205,24 @@ h1.hero-title {
 .svc-item p { color: #666; font-size: 0.85rem; line-height: 1.5; }
 
 /* --- PROJECTS --- */
+
+/* SEO Fix: Custom Bold class to replace excessive <strong> tags */
+.log-label {
+    font-weight: 700;
+    color: var(--text);
+    margin-right: 5px;
+}
+.text-justify {
+    text-align: justify;
+}
+.philosophy-text {
+    font-family: var(--font-mono);
+    color: #aaa;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
 .project-card {
     display: grid; grid-template-columns: 0.5fr 2fr 1fr; gap: 2rem;
     padding: 3rem 0; border-top: 1px solid var(--border); transition: 0.3s;
