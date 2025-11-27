@@ -15,279 +15,294 @@
 
     <!-- INTERACTIVE SCRIPTS -->
     <script>
-        // --- 1. MOBILE MENU TOGGLE ---
-        const menuBtn = document.querySelector('.mobile-menu-btn');
-        const mobileMenu = document.querySelector('.mobile-menu-overlay');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-        let isMenuOpen = false;
+        document.addEventListener('DOMContentLoaded', () => {
 
-        menuBtn.addEventListener('click', () => {
-            isMenuOpen = !isMenuOpen;
-            mobileMenu.classList.toggle('active');
-            // Animate bars
-            if(isMenuOpen) {
-                gsap.to('.bar:nth-child(1)', { rotate: 45, y: 4, duration: 0.3 });
-                gsap.to('.bar:nth-child(2)', { rotate: -45, y: -4, duration: 0.3 });
-                // Stagger links
-                gsap.fromTo(mobileLinks, { y: 50, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.1, delay: 0.2 });
-            } else {
-                gsap.to('.bar', { rotate: 0, y: 0, duration: 0.3 });
+            // --- 1. MOBILE MENU TOGGLE ---
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu-overlay');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            let isMenuOpen = false;
+
+            if(menuBtn) {
+                menuBtn.addEventListener('click', () => {
+                    isMenuOpen = !isMenuOpen;
+                    mobileMenu.classList.toggle('active');
+                    if(isMenuOpen) {
+                        gsap.to('.bar:nth-child(1)', { rotate: 45, y: 4, duration: 0.3 });
+                        gsap.to('.bar:nth-child(2)', { rotate: -45, y: -4, duration: 0.3 });
+                        gsap.fromTo(mobileLinks, { y: 50, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.1, delay: 0.2 });
+                    } else {
+                        gsap.to('.bar', { rotate: 0, y: 0, duration: 0.3 });
+                    }
+                });
             }
-        });
 
-        // Close menu on link click
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                isMenuOpen = false;
-                mobileMenu.classList.remove('active');
-                gsap.to('.bar', { rotate: 0, y: 0, duration: 0.3 });
-            });
-        });
-
-        // --- 2. PRELOADER & HERO ANIMATION ---
-        const preloader = document.getElementById('preloader');
-        const loaderProgress = document.querySelector('.loader-progress');
-        const body = document.body;
-
-        window.addEventListener('load', () => {
-            let width = 0;
-            const interval = setInterval(() => {
-                width += Math.random() * 15;
-                if(width > 100) width = 100;
-                loaderProgress.style.width = width + '%';
-                
-                if(width === 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        gsap.to(preloader, {
-                            y: '-100%',
-                            duration: 1,
-                            ease: 'power4.inOut',
-                            onComplete: () => {
-                                body.classList.remove('loading');
-                                startAnimations();
-                            }
-                        });
-                    }, 500);
-                }
-            }, 100);
-        });
-
-        // --- 3. SMOOTH SCROLL (LENIS) ---
-        const lenis = new Lenis({ duration: 1.2, smooth: true });
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        // --- 4. CUSTOM CURSOR (DESKTOP ONLY) ---
-        // Checks if device supports hover
-        if (window.matchMedia("(hover: hover)").matches) {
-            const cursor = document.querySelector('.cursor');
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-            });
-            document.querySelectorAll('a, .tech-item, .project-card').forEach(el => {
-                el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-                el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-            });
-        }
-
-        // --- 5. GSAP ANIMATIONS ---
-        gsap.registerPlugin(ScrollTrigger);
-
-        function startAnimations() {
-            // Text Scramble
-            const titles = new SplitType('.reveal-text', { types: 'chars' });
-            gsap.from(titles.chars, {
-                opacity: 0, y: 50, rotateX: -90, stagger: 0.05,
-                duration: 1, ease: 'back.out(1.7)'
-            });
-
-            // Stats
-            gsap.utils.toArray('.stat-num').forEach(stat => {
-                const endVal = stat.getAttribute('data-val');
-                if(endVal) {
-                    ScrollTrigger.create({
-                        trigger: stat,
-                        start: 'top 85%',
-                        onEnter: () => {
-                            let obj = { val: 0 };
-                            gsap.to(obj, {
-                                val: endVal,
-                                duration: 2,
-                                ease: 'power2.out',
-                                onUpdate: () => {
-                                    stat.innerText = Math.ceil(obj.val) + (stat.innerText.includes('%') ? '%' : (stat.innerText.includes('m') ? 'm' : ''));
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-
-            // Projects
-            gsap.utils.toArray('.project-card').forEach((card, i) => {
-                gsap.from(card, {
-                    scrollTrigger: { trigger: card, start: 'top 90%' },
-                    y: 50, opacity: 0, duration: 0.8, delay: i * 0.1
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    isMenuOpen = false;
+                    mobileMenu.classList.remove('active');
+                    gsap.to('.bar', { rotate: 0, y: 0, duration: 0.3 });
                 });
             });
-        }
 
-        // --- 6. THREE.JS BACKGROUND (RESPONSIVE) ---
-        const canvas = document.querySelector('#webgl-bg');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-        
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-        // Adjust complexity for mobile
-        const isMobile = window.innerWidth < 768;
-        const particleCount = isMobile ? 40 : 100; // Reduce particles on mobile
-
-        const geometry = new THREE.IcosahedronGeometry(isMobile ? 2.5 : 3, isMobile ? 1 : 2);
-        const wireframe = new THREE.WireframeGeometry(geometry);
-        const lineMaterial = new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.3 });
-        const sphereLines = new THREE.LineSegments(wireframe, lineMaterial);
-        scene.add(sphereLines);
-
-        const particlesGeometry = new THREE.BufferGeometry();
-        const posArray = new Float32Array(particleCount * 3);
-        for(let i = 0; i < particleCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 10;
-        }
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const particlesMaterial = new THREE.PointsMaterial({ size: 0.03, color: 0xff5e00 });
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particlesMesh);
-
-        camera.position.z = 6;
-
-        let mouseX = 0;
-        let mouseY = 0;
-        // Gyroscope or Mouse interaction
-        window.addEventListener('mousemove', (event) => {
-            mouseX = event.clientX / window.innerWidth - 0.5;
-            mouseY = event.clientY / window.innerHeight - 0.5;
-        });
-
-        const animate = () => {
-            requestAnimationFrame(animate);
-            sphereLines.rotation.y += 0.002;
-            sphereLines.rotation.x += 0.001;
+            // --- 2. LIVE TELEMETRY LOGIC ---
+            const teleWidget = document.getElementById('tele-widget');
+            const teleBtn = document.getElementById('tele-toggle-btn');
             
-            // Reduced reaction on mobile
-            particlesMesh.rotation.y = mouseY * (isMobile ? 0.2 : 0.5);
-            particlesMesh.rotation.x = mouseX * (isMobile ? 0.2 : 0.5);
-            particlesMesh.position.y = Math.sin(Date.now() * 0.001) * 0.2;
+            if(teleBtn && teleWidget) {
+                teleBtn.addEventListener('click', () => {
+                    teleWidget.classList.toggle('minimized');
+                });
+                // Allow maximizing if clicked while minimized
+                teleWidget.addEventListener('click', (e) => {
+                    if(teleWidget.classList.contains('minimized')) {
+                        teleWidget.classList.remove('minimized');
+                    }
+                });
+            }
 
-            renderer.render(scene, camera);
-        };
-        animate();
+            function updateTelemetry() {
+                const cpu = Math.floor(Math.random() * (45 - 5) + 5);
+                const lat = Math.floor(Math.random() * (120 - 20) + 20);
+                
+                const cpuVal = document.getElementById('cpu-val');
+                const latVal = document.getElementById('lat-val');
+                const cpuBar = document.getElementById('cpu-bar');
+                const latBar = document.getElementById('lat-bar');
 
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-// --- 7. LIVE TELEMETRY SIMULATOR ---
-        function updateTelemetry() {
-            // Simulate CPU fluctuations
-            const cpu = Math.floor(Math.random() * (45 - 5) + 5);
-            document.getElementById('cpu-val').innerText = cpu + '%';
-            document.getElementById('cpu-bar').style.width = cpu + '%';
+                if(cpuVal) {
+                    cpuVal.innerText = cpu + '%';
+                    cpuBar.style.width = cpu + '%';
+                    cpuBar.style.background = cpu > 80 ? '#ff3333' : (cpu > 50 ? '#ffbd2e' : '#ff5e00');
+                }
+                if(latVal) {
+                    latVal.innerText = lat + 'ms';
+                    latBar.style.width = (lat / 2) + '%';
+                }
+            }
+            setInterval(updateTelemetry, 2000);
+
+            // --- 3. TERMINAL LOGIC ---
+            const termBtn = document.getElementById('terminal-btn');
+            const termOverlay = document.getElementById('terminal-overlay');
+            const termClose = document.getElementById('term-close-btn');
+            const termInput = document.getElementById('term-input');
+            const termOutput = document.getElementById('term-output');
+
+            if(termBtn) {
+                termBtn.addEventListener('click', () => {
+                    termOverlay.classList.add('open');
+                    setTimeout(() => termInput.focus(), 100);
+                });
+            }
+
+            if(termClose) {
+                termClose.addEventListener('click', () => {
+                    termOverlay.classList.remove('open');
+                });
+            }
+
+            if(termInput) {
+                termInput.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter') {
+                        const command = termInput.value.toLowerCase().trim();
+                        processCommand(command);
+                        termInput.value = '';
+                    }
+                });
+            }
+
+            function processCommand(cmd) {
+                addToTerm(`nithees@portfolio:~$ ${cmd}`, 'rgba(255,255,255,0.5)');
+                
+                switch(cmd) {
+                    case 'help':
+                        addToTerm('Available commands:');
+                        addToTerm('- about    : Who am I?');
+                        addToTerm('- stack    : View tech stack');
+                        addToTerm('- contact  : Send email');
+                        addToTerm('- clear    : Clear terminal');
+                        addToTerm('- deploy   : Trigger fake deployment');
+                        break;
+                    case 'about':
+                        addToTerm('Senior DevOps Lead based in Bangkok. Obsessed with automation and cost-cutting.');
+                        break;
+                    case 'stack':
+                        addToTerm('K8s, Terraform, AWS, GCP, Python, ArgoCD.');
+                        break;
+                    case 'contact':
+                        addToTerm('Opening mail client...', 'yellow');
+                        setTimeout(() => window.location.href = "mailto:nitheesbalaji@gmail.com", 1000);
+                        break;
+                    case 'clear':
+                        termOutput.innerHTML = '';
+                        break;
+                    case 'deploy':
+                        addToTerm('Initiating Deployment Pipeline...', 'cyan');
+                        let progress = 0;
+                        const interval = setInterval(() => {
+                            progress += 20;
+                            addToTerm(`> Compiling assets... [${progress}%]`);
+                            if(progress >= 100) {
+                                clearInterval(interval);
+                                addToTerm('DEPLOYMENT SUCCESSFUL. Production is stable.', '#0f0');
+                            }
+                        }, 400);
+                        break;
+                    case '': break;
+                    default:
+                        addToTerm(`Command not found: ${cmd}. Type 'help' for list.`, '#ff5f56');
+                }
+            }
+
+            function addToTerm(text, color = '#ddd') {
+                const div = document.createElement('div');
+                div.className = 'term-line';
+                div.style.color = color;
+                div.innerText = text;
+                termOutput.appendChild(div);
+                termOutput.scrollTop = termOutput.scrollHeight;
+            }
+
+            // --- 4. PRELOADER & GSAP ---
+            const preloader = document.getElementById('preloader');
+            const loaderProgress = document.querySelector('.loader-progress');
             
-            // Simulate Latency fluctuations
-            const lat = Math.floor(Math.random() * (120 - 20) + 20);
-            document.getElementById('lat-val').innerText = lat + 'ms';
-            document.getElementById('lat-bar').style.width = (lat / 2) + '%';
-            
-            // Color logic
-            const cpuBar = document.getElementById('cpu-bar');
-            if(cpu > 80) cpuBar.style.background = 'red';
-            else if(cpu > 50) cpuBar.style.background = 'orange';
-            else cpuBar.style.background = '#ff5e00';
-        }
-        setInterval(updateTelemetry, 2000);
+            gsap.registerPlugin(ScrollTrigger);
 
-        // --- 8. INTERACTIVE TERMINAL LOGIC ---
-        const terminalOverlay = document.getElementById('terminal-overlay');
-        const termInput = document.getElementById('term-input');
-        const termOutput = document.getElementById('term-output');
+            function startAnimations() {
+                const titles = new SplitType('.reveal-text', { types: 'chars' });
+                gsap.from(titles.chars, {
+                    opacity: 0, y: 50, rotateX: -90, stagger: 0.05,
+                    duration: 1, ease: 'back.out(1.7)'
+                });
 
-        function toggleTerminal() {
-            terminalOverlay.classList.toggle('open');
-            if(terminalOverlay.classList.contains('open')) {
-                setTimeout(() => termInput.focus(), 100);
+                gsap.utils.toArray('.stat-num').forEach(stat => {
+                    const endVal = stat.getAttribute('data-val');
+                    if(endVal) {
+                        ScrollTrigger.create({
+                            trigger: stat, start: 'top 85%',
+                            onEnter: () => {
+                                let obj = { val: 0 };
+                                gsap.to(obj, {
+                                    val: endVal, duration: 2, ease: 'power2.out',
+                                    onUpdate: () => {
+                                        stat.innerText = Math.ceil(obj.val) + (stat.innerText.includes('%') ? '%' : (stat.innerText.includes('m') ? 'm' : ''));
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+
+                gsap.utils.toArray('.project-card').forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: { trigger: card, start: 'top 90%' },
+                        y: 50, opacity: 0, duration: 0.8, delay: i * 0.1
+                    });
+                });
             }
-        }
 
-        termInput.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                const command = termInput.value.toLowerCase().trim();
-                processCommand(command);
-                termInput.value = '';
+            window.addEventListener('load', () => {
+                let width = 0;
+                const interval = setInterval(() => {
+                    width += Math.random() * 15;
+                    if(width > 100) width = 100;
+                    if(loaderProgress) loaderProgress.style.width = width + '%';
+                    
+                    if(width === 100) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            if(preloader) {
+                                gsap.to(preloader, {
+                                    y: '-100%', duration: 1, ease: 'power4.inOut',
+                                    onComplete: () => {
+                                        document.body.classList.remove('loading');
+                                        startAnimations();
+                                    }
+                                });
+                            }
+                        }, 500);
+                    }
+                }, 100);
+            });
+
+            // --- 5. SMOOTH SCROLL ---
+            const lenis = new Lenis({ duration: 1.2, smooth: true });
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+
+            // --- 6. THREE.JS ---
+            const canvas = document.querySelector('#webgl-bg');
+            if(canvas) {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                const isMobile = window.innerWidth < 768;
+                const geometry = new THREE.IcosahedronGeometry(isMobile ? 2.5 : 3, isMobile ? 1 : 2);
+                const wireframe = new THREE.WireframeGeometry(geometry);
+                const lineMaterial = new THREE.LineBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.3 });
+                const sphereLines = new THREE.LineSegments(wireframe, lineMaterial);
+                scene.add(sphereLines);
+                
+                // Add particles
+                const particlesGeometry = new THREE.BufferGeometry();
+                const particleCount = isMobile ? 40 : 100;
+                const posArray = new Float32Array(particleCount * 3);
+                for(let i = 0; i < particleCount * 3; i++) {
+                    posArray[i] = (Math.random() - 0.5) * 10;
+                }
+                particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+                const particlesMaterial = new THREE.PointsMaterial({ size: 0.03, color: 0xff5e00 });
+                const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+                scene.add(particlesMesh);
+
+                camera.position.z = 6;
+                
+                let mouseX = 0;
+                let mouseY = 0;
+                window.addEventListener('mousemove', (event) => {
+                    mouseX = event.clientX / window.innerWidth - 0.5;
+                    mouseY = event.clientY / window.innerHeight - 0.5;
+                });
+
+                const animate = () => {
+                    requestAnimationFrame(animate);
+                    sphereLines.rotation.y += 0.002;
+                    sphereLines.rotation.x += 0.001;
+                    particlesMesh.rotation.y = mouseY * (isMobile ? 0.2 : 0.5);
+                    particlesMesh.rotation.x = mouseX * (isMobile ? 0.2 : 0.5);
+                    particlesMesh.position.y = Math.sin(Date.now() * 0.001) * 0.2;
+                    renderer.render(scene, camera);
+                };
+                animate();
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+
+            // --- 7. CURSOR FOLLOWER ---
+            if (window.matchMedia("(hover: hover)").matches) {
+                const cursor = document.querySelector('.cursor');
+                if(cursor) {
+                    document.addEventListener('mousemove', (e) => {
+                        cursor.style.left = e.clientX + 'px';
+                        cursor.style.top = e.clientY + 'px';
+                    });
+                    document.querySelectorAll('a, button, .project-card, .profile-frame').forEach(el => {
+                        el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+                        el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+                    });
+                }
             }
         });
-
-        function processCommand(cmd) {
-            // Echo the command
-            addToTerm(`nithees@portfolio:~$ ${cmd}`, 'rgba(255,255,255,0.5)');
-
-            switch(cmd) {
-                case 'help':
-                    addToTerm('Available commands:');
-                    addToTerm('- about    : Who am I?');
-                    addToTerm('- stack    : View tech stack');
-                    addToTerm('- contact  : Send email');
-                    addToTerm('- clear    : Clear terminal');
-                    addToTerm('- deploy   : Trigger fake deployment');
-                    break;
-                case 'about':
-                    addToTerm('Senior DevOps Lead based in Bangkok. Obsessed with automation and cost-cutting.');
-                    break;
-                case 'stack':
-                    addToTerm('K8s, Terraform, AWS, GCP, Python, ArgoCD.');
-                    break;
-                case 'contact':
-                    addToTerm('Opening mail client...', 'yellow');
-                    setTimeout(() => window.location.href = "mailto:nitheesbalaji@gmail.com", 1000);
-                    break;
-                case 'clear':
-                    termOutput.innerHTML = '';
-                    break;
-                case 'deploy':
-                    addToTerm('Initiating Deployment Pipeline...', 'cyan');
-                    let progress = 0;
-                    const interval = setInterval(() => {
-                        progress += 20;
-                        addToTerm(`> Compiling assets... [${progress}%]`);
-                        if(progress >= 100) {
-                            clearInterval(interval);
-                            addToTerm('DEPLOYMENT SUCCESSFUL. Production is stable.', '#0f0');
-                        }
-                    }, 400);
-                    break;
-                case '':
-                    break;
-                default:
-                    addToTerm(`Command not found: ${cmd}. Type 'help' for list.`, 'red');
-            }
-        }
-
-        function addToTerm(text, color = '#ddd') {
-            const div = document.createElement('div');
-            div.className = 'term-line';
-            div.style.color = color;
-            div.innerText = text;
-            termOutput.appendChild(div);
-            termOutput.scrollTop = termOutput.scrollHeight;
-        }
     </script>
 </body>
 </html>

@@ -214,10 +214,12 @@
             INITIATE_HANDSHAKE
         </a>
     </section>
-<!-- FEATURE 1: LIVE TELEMETRY WIDGET (Bottom Left) -->
-    <div class="telemetry-widget">
-        <div class="tele-header">
-            <span class="pulse-dot"></span> LIVE TELEMETRY
+
+    <!-- FEATURE 1: LIVE TELEMETRY WIDGET -->
+    <div class="telemetry-widget" id="tele-widget">
+        <div class="tele-header" id="tele-toggle-btn">
+            <div class="tele-title"><span class="pulse-dot"></span> LIVE_METRICS</div>
+            <div class="tele-toggle">_</div>
         </div>
         <div class="tele-grid">
             <div class="tele-item">
@@ -242,12 +244,12 @@
         </div>
     </div>
 
-    <!-- FEATURE 2: INTERACTIVE TERMINAL (Hidden by default) -->
+    <!-- FEATURE 2: INTERACTIVE TERMINAL -->
     <div id="terminal-overlay" class="terminal-overlay">
         <div class="terminal-box">
             <div class="term-header">
                 <div class="term-title"><i class="fas fa-terminal"></i> BASH -- nithees@portfolio:~</div>
-                <button class="term-close" onclick="toggleTerminal()">X</button>
+                <button class="term-close" id="term-close-btn">X</button>
             </div>
             <div class="term-body" id="term-output">
                 <div class="term-line">Welcome to NitheesOS v2.0.5</div>
@@ -261,8 +263,8 @@
         </div>
     </div>
 
-    <!-- FLOATING TERMINAL BUTTON (Bottom Right) -->
-    <button class="fab-terminal" onclick="toggleTerminal()">
+    <!-- FLOATING TERMINAL BUTTON -->
+    <button class="fab-terminal" id="terminal-btn">
         <i class="fas fa-terminal"></i>
     </button>
 </main>
